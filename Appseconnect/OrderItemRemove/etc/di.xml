@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Appseconnect\OrderItemRemove\Api\ItemRemoveRepositoryInterface" type="Appseconnect\OrderItemRemove\Model\ItemRemoveRepository"/>
+    <preference for="Appseconnect\OrderItemRemove\Api\Data\ItemsInterface" type="Appseconnect\OrderItemRemove\Model\Data\ItemsData"/>
+
+    <preference for="Appseconnect\OrderItemRemove\Api\Data\ItemRemoveInterface" type="Appseconnect\OrderItemRemove\Model\Data\ItemRemoveData"/>
+</config>

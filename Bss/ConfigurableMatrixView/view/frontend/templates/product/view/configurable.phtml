@@ -1,0 +1,655 @@
+<style type="text/css" media="screen">
+	 /*hide box-qty*/
+	.box-tocart .qty{
+		display: none;
+	}
+</style>
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_ConfigurableMatrixView
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2016 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+$_product    = $block->getProduct();
+$_objectmanager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper_swatch = $_objectmanager->get('\Magento\Swatches\Helper\Data');
+$_helper = $_objectmanager->get('\Bss\ConfigurableMatrixView\Helper\Data');
+
+$childs = $block->getConfigurableMatrixViewData();
+$productTypeInstance = $_objectmanager->get('Magento\ConfigurableProduct\Model\Product\Type\Configurable');
+$productAttribute = $productTypeInstance->getConfigurableAttributesAsArray($_product);
+$attribute_matrix = $block->getAttributeMatrix();
+$number_attribute_matrix = count($attribute_matrix);
+$attribute_id_swatch = array_keys($helper_swatch->getSwatchAttributesAsArray($_product));
+if ($number_attribute_matrix == 1) {
+	foreach ($attribute_matrix as $k => $v) {
+		$attributes_matrix[] = $productAttribute[$k];
+	}
+}
+if ($number_attribute_matrix == 2) {
+	foreach ($attribute_matrix as $k2 => $v2) {
+		$attributes_matrix[] = $productAttribute[$k2];
+	}
+}
+$json_customoption =  $_objectmanager->get('\Magento\Catalog\Block\Product\View\Options')->getJsonConfig();
+$price_display_type = $_objectmanager->get('\Magento\Tax\Model\Config')->getPriceDisplayType();
+$taxRate =  ($block->getRateTax() > 0)? $block->getRateTax() : 0;
+?>
+<div class="total-rest-matrix-view">
+	<div class="total-price">
+		<?php if ($_helper->canShowTotal()): ?>
+		<p><?php echo __('Total price: ') ?><span class="total-price-matrix"></span></p>
+		<?php endif ?>
+	</div>
+	<div class="reset">
+		<span id="reset-matrix-view" title="<?php echo __('Reset All') ?>"><span><?php echo __('Reset All') ?></span></span>
+	</div>
+</div>
+<div class="swatch-opt" data-role="swatch-options"></div>
+<div class="block-bss-matrixview">
+
+<?php if ($number_attribute_matrix == 1): ?>
+<div class="bss-attribute-label">
+	<span><?php echo $attributes_matrix[0]['label'] ?></span>
+</div>
+<table id="bss-matrixview">
+	<thead>
+		<tr class="item-info">
+			<?php 
+
+			$sort_option = [];
+			$sort_option_success = [];
+			if ($_helper->getSortOption()) {
+				foreach ($attributes_matrix[0]['values'] as $k11 => $v11) {
+					$sort_option[$v11['store_label']] = $v11;
+				}
+				ksort($sort_option);
+
+				foreach ($sort_option as $k12 => $v12) {
+					$sort_option_success[] = $v12;
+				}
+			}else{
+				$sort_option_success = $attributes_matrix[0]['values'];
+			}
+			?>
+			<?php $th = 1; foreach ($sort_option_success as $attribute_id => $attribute): ?>
+				<th class="col qty first-attr <?php echo 'bss-swatch'?>" attribute-code="<?php echo $attributes_matrix[0]['attribute_code'];?>" attribute-value="<?php echo $attribute['value_index']; ?>" attribute-id="<?php echo $attributes_matrix[0]['attribute_id']; ?>">
+					<?php if (!in_array($attributes_matrix[0]['attribute_id'], $attribute_id_swatch)): ?>
+							<span class="lable-super-attribute"><?php echo $attribute['store_label'] ?></span>
+					<?php endif ?>
+					<input type="hidden" name="bss_super_attribute[<?php echo $th ?>][<?php echo $attributes_matrix[0]['attribute_id'] ?>]" value="<?php echo $attribute['value_index'] ?>" class="swatch-attribute" readonly="readonly"> 
+				</th>
+			<?php $th++; endforeach ?>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="item-info">
+			<?php $i = 1;foreach ($sort_option_success as $attribute_id => $attribute): ?>
+				<td class="child-product-matrix">
+					<input type="number" class="qty" name="qty_<?php echo $_product->getId() ?>_<?php echo $i ?>" value="0" placeholder="">
+					<p class="mess-err-bss-m">
+						<span class="mess-err-bss"></span>
+					</p>
+					<input type="hidden" class="super_attribute_matrix" name="super_attribute_<?php echo $_product->getId() ?>[<?php echo $i ?>][<?php echo $attributes_matrix[0]['attribute_id'] ?>]" data-attribute-id="<?php echo $attributes_matrix[0]['attribute_id'] ?>" value="<?php echo $attribute['value_index']?>">
+				</td>
+			<?php $i++;endforeach ?>
+		</tr>
+	
+	</tbody>
+</table>
+<?php endif ?>
+<?php if ($number_attribute_matrix > 1): ?>
+<?php
+$sort_option = [];
+$sort_option_success = [];
+$sort_option1 = [];
+$sort_option_success1 = [];
+if ($_helper->getSortOption()) {
+	foreach ($attributes_matrix[0]['values'] as $k01 => $v01) {
+		$sort_option[$v01['store_label']] = $v01;
+	}
+	ksort($sort_option);
+
+	foreach ($sort_option as $k11 => $v11) {
+		$sort_option_success[] = $v11;
+	}
+	foreach ($attributes_matrix[1]['values'] as $k02 => $v02) {
+		$sort_option1[$v02['store_label']] = $v02;
+	}
+	ksort($sort_option1);
+
+	foreach ($sort_option1 as $k12 => $v12) {
+		$sort_option_success1[] = $v12;
+	}
+}else{
+	$sort_option_success = $attributes_matrix[0]['values'];
+	$sort_option_success1 = $attributes_matrix[1]['values'];
+}
+?>
+<div class="border-row-matrix" style="position: relative;">
+	<div class="border-row-left"></div>
+	<div class="border-row-right"></div>
+</div>
+<canvas id="bsscanvas"></canvas>
+<table id="bss-matrixview">
+	<thead>
+		<tr class="item-info">
+			<th class="label-attribute-f">
+				<span class="label-attribute1">
+					<?php echo $attributes_matrix[1]['label'] ?>
+				</span>
+				<span class="label-attribute0">
+					<?php echo $attributes_matrix[0]['label'] ?>
+				</span>
+				<p style="visibility: hidden;"><?php echo $attributes_matrix[0]['label'].$attributes_matrix[1]['label'] ?></p>
+			</th>
+			<?php $th = 1; foreach ($sort_option_success1 as $attribute_id => $attribute): ?>
+				<th class="col qty first-attr <?php echo 'bss-swatch'?>" attribute-code="<?php echo $attributes_matrix[1]['attribute_code'];?>" attribute-value="<?php echo $attribute['value_index']; ?>" attribute-id="<?php echo $attributes_matrix[1]['attribute_id']; ?>">
+					<?php if (!in_array($attributes_matrix[1]['attribute_id'], $attribute_id_swatch)): ?>
+							<span class="lable-super-attribute"><?php echo $attribute['store_label'] ?></span>
+					<?php endif ?>
+					<input type="hidden" name="bss_super_attribute[<?php echo $th ?>][<?php echo $attributes_matrix[1]['attribute_id'] ?>]" value="<?php echo $attribute['value_index'] ?>" class="swatch-attribute" readonly="readonly">
+				</th>
+			<?php $th++; endforeach ?>
+		</tr>
+	</thead>
+	<tbody>
+	<?php $j = 1 ;foreach ($sort_option_success as $attribute_id => $attribute): ?>
+		<tr class="item-info">
+			<td class="col qty first-attr <?php echo 'bss-swatch'?>" attribute-code="<?php echo $attributes_matrix[0]['attribute_code'];?>" attribute-value="<?php echo $attribute['value_index']; ?>" attribute-id="<?php echo $attributes_matrix[0]['attribute_id']; ?>">
+				<?php if (!in_array($attributes_matrix[0]['attribute_id'], $attribute_id_swatch)): ?>
+					<span class="lable-super-attribute"><?php echo $attribute['store_label'] ?></span>
+				<?php endif ?>
+				<input type="hidden" name="bss_super_attribute[<?php echo $j ?>][<?php echo $attributes_matrix[0]['attribute_id'] ?>]" value="<?php echo $attribute['value_index'] ?>" class="swatch-attribute" readonly="readonly">
+			</td>
+		<?php foreach ($sort_option_success1 as $attribute_id1 => $attribute1): ?>
+			<td class="child-product-matrix">
+				<input type="number" class="qty" name="qty_<?php echo $_product->getId() ?>_<?php echo $j ?>" value="0" maxlength="12" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" data-validate="{'validate-number':true, 'validate-zero-or-greater':true}" placeholder="">
+				<p class="mess-err-bss-m">
+					<span class="mess-err-bss"></span>
+				</p>
+				<input type="hidden" class="super_attribute_matrix" data-attribute-id="<?php echo $attributes_matrix[0]['attribute_id'] ?>" name="super_attribute_<?php echo $_product->getId() ?>[<?php echo $j ?>][<?php echo $attributes_matrix[0]['attribute_id'] ?>]" value="<?php echo $attribute['value_index']?>">
+				<input type="hidden" class="super_attribute_matrix" data-attribute-id="<?php echo $attributes_matrix[1]['attribute_id'] ?>" name="super_attribute_<?php echo $_product->getId() ?>[<?php echo $j ?>][<?php echo $attributes_matrix[1]['attribute_id'] ?>]" value="<?php echo $attribute1['value_index']?>">
+			</td>
+			<?php $j++; endforeach ?>
+		</tr>
+	<?php endforeach ?>
+	</tbody>
+</table>
+<?php endif ?>
+</div>
+<!-- GET INFO CHILD PRODUCT -->
+<div class="info-child-product" style="display: none;">
+
+	<?php
+	$arguments['zone'] = 'item_view';
+	$arguments_f = [
+                    'include_container' => true,
+                    'display_minimal_price' => false,
+                    'zone' => \Magento\Framework\Pricing\Render::ZONE_ITEM_LIST,
+                    'list_category_page' => true
+                ];
+    $tier_prices = [];
+    $product_alw = [];
+	?>
+	<?php foreach ($childs as  $child): ?>
+		
+		<?php
+			$storeId = $_objectmanager->get(\Magento\Store\Model\StoreManagerInterface::class)->getStore()->getId();
+	        $child_product = $_objectmanager->create('Magento\Catalog\Model\Product')->setStoreId($storeId)->load($child['product_id']);
+	        $priceRender = $this->getLayout()->getBlock('product.price.render.default');
+			?>
+		<!-- Tier price -->
+		<?php if ($_helper->canShowTierPrice()): ?>
+			<?php if (trim($priceRender->render('tier_price', $child_product, $arguments)) != ''): ?>
+				<div id="tier-price-<?php echo $child['product_id'] ?>" class='tier-price' style="display: none;">
+				<?php
+					echo $priceRender->render('tier_price', $child_product, $arguments)
+				?>
+				</div>
+			<?php endif ?>
+		<?php endif ?>
+		<!-- Final Price -->
+		<?php if ($_helper->canShowUnitPrice()): ?>
+			<div id="final-price-<?php echo $child['product_id'] ?>" class='final-price'>
+			<?php
+				echo $priceRender->render('final_price', $child_product, $arguments)
+			?>
+			</div>
+		<?php endif ?>
+		<!-- Tier price json -->
+		<?php if ($child['tier_price']): ?>
+			<?php foreach ($child['tier_price'] as $tier_price) : ?>
+				<?php $tier_prices[$child['product_id']][$tier_price['price_qty']] = $tier_price['website_price']; ?>
+			<?php endforeach ?>
+		<?php endif ?>
+		
+		<!-- Stock qty  -->
+		<?php if ($_helper->canShowStock()): ?>	
+			<p id="stock-<?php echo $child['product_id'] ?>" class="stock-st">
+				<?php 
+					$stockItem = $_objectmanager->get('\Magento\CatalogInventory\Model\Stock\StockItemRepository');
+					$productStock = $stockItem->get($child['product_id']);
+				?>
+				<?php if ($productStock->getIsInStock()): ?>
+					<span class="stock-status-mt"><?php echo __('In Stock('.$productStock->getQty().')')?></span>
+				<?php else:?>
+					<span class="stock-status-mt"><?php echo __('Out of stock')?></span>
+				<?php endif ?>
+			</p>
+		<?php endif ?>
+		<!-- check product  -->
+		<?php if ($child_product->isSaleable()): ?>
+			<?php $product_alw[] = $child['product_id']; ?>
+		<?php endif ?>
+	<?php endforeach ?>
+</div>
+<?php 
+$cks_tier_price = true;
+if (count($childs) == count($tier_prices)) {
+	$tier_pricesck = array_values($tier_prices);
+	foreach ($tier_pricesck as $tier_price) {
+		if ($tier_price != $tier_pricesck[0]) {
+			$cks_tier_price = false;
+			break;
+		}
+	}
+}else{
+	$cks_tier_price = false;
+}
+?>
+<!-- Price range -->
+<?php if ($_helper->canShowPriceRange()): ?>
+	<?php if((float) $_helper->getMinPrice() != (float) $_helper->getMaxPrice()) : ?>
+	    <div id="bss-price-range" style="display: none">
+	    	<p class="bss-price-range">
+		        <span class="price-container">
+		           <b>From:</b> <?php echo $_helper->getDisplayPriceWithCurrency($_helper->getMinPrice()) ?>
+		           <b>To:</b> <?php echo $_helper->getDisplayPriceWithCurrency($_helper->getMaxPrice()) ?>
+		        </span>
+	        </p>
+	    </div>
+	<?php endif; ?>
+<?php endif ?>
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options]": {
+            "Bss_ConfigurableMatrixView/js/swatch-renderer": {
+                "jsonConfig": <?php /* @escapeNotVerified */ echo $swatchOptions = $block->getJsonConfigNoMatrix(); ?>,
+                "jsonSwatchConfig": <?php /* @escapeNotVerified */
+                    echo $swatchOptions = $block->getJsonSwatchNoMatrix(); ?>,
+                "mediaCallback": "<?php /* @escapeNotVerified */ echo $block->getMediaCallback() ?>",
+                "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar('gallery_switch_strategy',
+                    'Magento_ConfigurableProduct') ?: 'replace'; ?>"
+            }
+        }
+    }
+</script>
+
+<script>
+		var configuable_tier_price_array = <?php echo json_encode($tier_prices); ?>;
+		var cks_tier_price = '<?php echo $cks_tier_price ?>';
+		var show_button_qty = <?php echo ($_helper->canShowButtonQty())? 'true':'false'; ?>;
+		var product_alw = <?php echo json_encode($product_alw) ?>;
+		var configuable_currency_symbol = '<?php echo $this->helper('Bss\ConfigurableMatrixView\Helper\Data')->getCurrencySymbol(); ?>';
+		var template_price = '<?php echo strip_tags($_helper->getDisplayPriceWithCurrency(1));?>';
+		var jsonchildproduct = <?php echo  $block->getJsonConfigM() ?>;
+		var json_customoption = <?php echo $json_customoption ?>;
+		var price_display_type = <?php echo $price_display_type ?>;
+		require(['jquery','jquery/ui','bss/swatch','tableHeadFixer'],function($,spinner){
+			var jsonSwatchConfig = <?php /* @escapeNotVerified */
+                    echo $swatchOptions = $block->getJsonSwatchConfig(); ?>;
+			$('.item-info .bss-swatch').swatch({
+				jsonConfig: <?php /* @escapeNotVerified */ echo $swatchOptions = $block->getJsonConfig(); ?>,
+				jsonSwatchConfig: jsonSwatchConfig,
+				mediaCallback: '<?php /* @escapeNotVerified */ echo $block->getMediaCallback() ?>',
+				onlyMainImg: '<?php /* @escapeNotVerified */ echo $block->getVar('change_only_base_image',
+                    'Magento_Swatches') ?: 'false'; ?>',
+				magentoVersion: '<?php echo $this->getCurentVersion(); ?>',
+			});
+			
+			// insert price range
+			if($('#bss-price-range').length > 0){
+				if ($('.product-info-price>.price-box').length) {
+					$('.product-info-price>.price-box').html($('#bss-price-range').html()).css('width','auto');
+				}
+
+			}
+			// insert info tier price
+			if (cks_tier_price !='') {
+				if ($('.product-info-main .prices-tier.items').length > $('.product-options-wrapper .prices-tier.items').length){
+					$('.prices-tier.items').first().html($('.info-child-product .tier-price .prices-tier').first().html());
+				}else{
+
+					$('.info-child-product .tier-price .prices-tier').first().clone().insertAfter(".product-info-main > .product-info-price");
+				}
+			}
+			// insert button +-
+			if(show_button_qty){
+				$(".child-product-matrix > .qty").spinner({
+		               min: 0,
+		               step: 1,
+		        }).parent().find(".ui-spinner-button").empty().append("<span class='custom-button-bss'></span>");
+	        }
+
+	        // insert child product
+			loadChildProduct();
+			
+			$(document).ready(function(){
+				// create table scroll
+				if ($("#bss-matrixview").width() >= $(window).width()) {
+					$(".block-bss-matrixview").width($(window).width() - 30);
+				}
+				$(window).resize(function(){
+					if ($("#bss-matrixview").width() >= $(window).width()) {
+						$(".block-bss-matrixview").width($(window).width() - 30);
+					}
+				})
+
+				
+				
+				$("#bss-matrixview").tableHeadFixer({
+					'head' : true,
+					'foot' : true,
+					'left' : 1,
+					'right' : 0,
+					'z-index' : 10
+				}).show();
+				// tạo gạch chéo
+				diagonalLine();
+				// get parents
+				var closestRelativeParent = $('.child-product-matrix').parents().filter(function() { 
+				  var $this = $(this);
+				  return $this.is('body') || $this.css('position') == 'relative';
+				}).slice(0,1);
+				var posX_minus = $(closestRelativeParent).offset().left;
+            	var posY_minus = $(closestRelativeParent).offset().top;
+				// hover box qty
+				$('.child-product-matrix .qty').focusin(function(event){
+					var posX = $(this).offset().left;
+            		var posY = $(this).offset().top;
+            		// display error
+					if ($(this).parents('.child-product-matrix').find('.mess-err-bss').text() != '') {
+						$(this).parents('.child-product-matrix').find('.mess-err-bss-m').show().css({'top':posY - posY_minus - 10 - $(this).parents('.child-product-matrix').find('.mess-err-bss-m').outerHeight(),'left':posX + $('.custom-button-bss').width() + 20 - posX_minus -($(this).parents('.child-product-matrix').find('.mess-err-bss-m').outerWidth()/2)});
+						return false;
+					}
+
+					// display tier price
+					if($(this).parents('.child-product-matrix').find('.tier-price').length){
+						$(this).parents('.child-product-matrix').find('.tier-price').show().css({'top':posY - posY_minus - 10 - $(this).parents('.child-product-matrix').find('.tier-price').outerHeight(),'left':posX + $('.custom-button-bss').width() + 10 - posX_minus -($(this).parents('.child-product-matrix').find('.tier-price').outerWidth()/2)});
+						return false;
+					}
+				});
+				// hide tier price + error
+				$('.child-product-matrix .qty').focusout(function(){
+
+					$(this).parents('.child-product-matrix').find('.tier-price').hide();
+
+					$(this).parents('.child-product-matrix').find('.mess-err-bss-m').hide();
+				});
+
+				// reset matrix view
+				$('#reset-matrix-view').on('click',function(){
+					$('.child-product-matrix .qty').val(0);
+					$('.total-price-matrix').text('');
+					return false;
+				})
+				// select option
+				var handle = setInterval(function(){
+					if ($('input.super-attribute-select,select.super-attribute-select,textarea.super-attribute-select').length) {
+						selectSuperAttribute();
+						clearInterval(handle);
+					}
+					
+				},500)
+			})
+
+			$('#bss-matrixview .qty,.ui-spinner-button,input.product-custom-option,select.product-custom-option ,textarea.product-custom-option').on("change paste keyup click", function(){
+				var total_price = loadTotalPrice();
+				var taxRate = <?php echo $taxRate / 100; ?>;
+				if (price_display_type == 3) {
+					var amount = total_price * (1 - 1 / (1 + taxRate))
+					$('.total-price-matrix').text(convertPrice(total_price.toFixed(2),configuable_currency_symbol,template_price) + '  ' + '(' + '<?php echo __("Excl. Tax") ?>' + ':'+ convertPrice((total_price - amount).toFixed(2),configuable_currency_symbol,template_price) + ')');
+				}else{
+					$('.total-price-matrix').text(convertPrice(total_price.toFixed(2),configuable_currency_symbol,template_price));
+				}
+			})
+			// replace url
+			href = $('#product_addtocart_form').attr('action');
+
+			$('#product_addtocart_form').attr('action',href.replace('checkout/cart','matrixview/cart'));
+
+			// attribute change
+			function selectSuperAttribute(argument) {
+				$('input.super-attribute-select,select.super-attribute-select,textarea.super-attribute-select ').on("change paste keyup", function(){
+					var attribute_id = jQuery(this).attr('name').match(/\d+/)[0];
+					var option_value = jQuery(this).val();
+					$('#bss-matrixview .rm-attribute').each(function() {
+						if ($(this).data('attribute-id') == attribute_id) {
+							$(this).remove();
+						}
+					});
+					$('#bss-matrixview input[name="child-product-matrix"],#bss-matrixview .final-price,#bss-matrixview .tier-price,#bss-matrixview .stock-st').remove();
+					$('#bss-matrixview .child-product-matrix').each(function(){
+						$(this).append('<input type="hidden" disabled="disabled" class="super_attribute_matrix rm-attribute" data-attribute-id="'+ attribute_id +'" value="'+ option_value+ '" />');
+					})
+					loadChildProduct();
+					diagonalLine();
+				})
+			}
+
+			// load product
+			function loadChildProduct() {
+				$('#bss-matrixview .child-product-matrix').each(function(){
+					var i = 1;
+					var products = [];
+					jQuery(this).find('.super_attribute_matrix').each(function(){
+						var option = jQuery(this);
+						var attribute = jsonchildproduct["attributes"][$(this).data('attribute-id')]['options'];
+						jQuery.each(attribute, function (index, value){
+						  if (value['id'] == jQuery(option).val()) {
+						  	products.push(value['products']);
+						  }
+						});
+					})
+					var product = products.shift().filter(function(v) {
+					    return products.every(function(a) {
+					        return a.indexOf(v) !== -1;
+					    });
+					});
+					if(product[0] && product.length == 1){
+						$(this).append('<input type="hidden" name="child-product-matrix" value="'+ product[0] +'">')
+						$('#final-price-' + product[0]).clone().appendTo(this)
+						$('#stock-' + product[0]).clone().appendTo(this)
+						$(this).find('*').css('visibility','')
+						if (cks_tier_price ==''){
+							if ($('#tier-price-' + product[0]).length) {
+								$('#tier-price-' + product[0]).clone().appendTo(this)
+							}
+						}
+
+						if (product_alw.indexOf(product[0]) > -1) {
+							$(this).find('.qty').removeAttr('disabled')
+							$(this).find('.ui-spinner-button').css('visibility','')
+						}else{
+							$(this).find('.qty').attr('disabled','disabled')
+							$(this).find('.ui-spinner-button').css('visibility','hidden')
+						}
+						
+					}else{
+						$(this).find('.qty').attr('disabled','disabled')
+						$(this).find('*').css('visibility','hidden')
+					}
+				})
+			}
+
+			// load total price
+			function loadTotalPrice(){
+				var tier_price_calculate = <?php echo $_helper->calculateTierPrice()? 'true':'false'?>;
+				var total_qty = getTotalQty();
+				var custom_price = reloadpriceCustomOption();
+				var total_price = 0;
+				$('#bss-matrixview .child-product-matrix').each(function(){
+					var qty = 0 ;
+					if ($(this).find('.qty').val() !='') {
+						qty = parseFloat($(this).find('.qty').val());
+					}
+					child_product = $(this).find('input[name="child-product-matrix"]').val();
+					tier_price = 0;
+					if (child_product && qty > 0) {
+						unit_price = jsonchildproduct["optionPrices"][child_product]['finalPrice']["amount"];
+						if (typeof configuable_tier_price_array[child_product] !== 'undefined') {
+							if (tier_price_calculate && cks_tier_price !='') {
+								tier_price = loadTierPrice(configuable_tier_price_array[child_product],total_qty);
+							}else{
+								tier_price = loadTierPrice(configuable_tier_price_array[child_product],qty);
+							}
+						}
+						if (tier_price > 0 &&  tier_price < unit_price ) {
+							unit_price  = parseFloat(tier_price);
+						}
+
+						total_price += (custom_price*qty);
+						total_price += (unit_price*qty);
+					}
+				})
+				return total_price;
+			}
+
+			// load total qty
+			function getTotalQty(){
+				var total_qty = 0;
+				$('#bss-matrixview .child-product-matrix .qty').each(function(){
+					if ($(this).val() !='' && $(this).val() > 0) {
+						total_qty += parseFloat($(this).val());
+					}
+				})
+				return total_qty;
+			}
+
+			// load tier price
+			function loadTierPrice(tier_prices,qty){
+				prevQty = 1;
+				price = 0;
+            	jQuery.each( tier_prices, function( price_qty, tier_price ) {
+				 	if (qty < price_qty) return true;
+            		if (price_qty < prevQty) return true;
+            		price = tier_price;
+                	prevQty = parseFloat(price_qty);
+				});
+	            return price;
+			}
+
+			// load custom options price
+			function reloadpriceCustomOption(){
+				var priceplus = 0;
+				$ = jQuery;
+		    	$('.product-custom-option').each(function(){
+		    		var attribute_id = $(this).attr('name').match(/\d+/)[0];
+		            if ($(this).attr('type') == 'checkbox' || $(this).attr('type') == 'radio') {
+		            	if ($(this).is(':checked')) {
+		            		if ($(this).val() != '') {
+		            			priceplus += parseFloat(json_customoption[attribute_id][$(this).val()]['prices']['finalPrice']['amount']);
+		            		}
+		            	}
+		            }
+
+		            if ($(this).attr('type') == 'text' || $(this).attr('type') == 'time' ) {
+		            	if ($(this).val() != '' && attribute_id !='') {
+		            		priceplus += parseFloat(json_customoption[attribute_id]['prices']['finalPrice']['amount']);
+		            	}
+		            }
+		            if ($(this).attr('type') == 'file') {
+		            	
+		            }
+		        
+				})
+
+				var loopone = 1;
+				$('select.product-custom-option').each(function(){
+					var attribute_id = $(this).attr('name').match(/\d+/)[0];
+		            if($(this).is("select[multiple]")){
+					    if ($(this).val() != '') {
+		            		$(this).find('option:selected').each(function(){
+		            			if ($(this).val() != '') {
+							   		priceplus += parseFloat(json_customoption[attribute_id][$(this).val()]['prices']['finalPrice']['amount']);
+							    }
+							});
+		            	}
+					}else if($(this).hasClass('datetime-picker')){
+						allselected = 1;
+						
+						$(this).parent().find('select').each(function(){
+							if ($(this).val() == '') {
+								allselected = 0;
+							}
+						})
+						if (allselected == 1 && loopone == 1) {
+							if ($(this).val() != '' && json_customoption!='') {
+				            	priceplus += parseFloat(json_customoption[attribute_id]['prices']['finalPrice']['amount']);
+				            	loopone = 0;
+				            }
+						}
+					}
+					else{
+						if ($(this).val() != '') {
+		            		priceplus += parseFloat(json_customoption[attribute_id][$(this).val()]['prices']['finalPrice']['amount']);
+		            	}
+					}
+				})
+		    	$('textarea.product-custom-option').each(function(){
+		    		var attribute_id = $(this).attr('name').match(/\d+/)[0];
+		           	if ($(this).val() != '' && json_customoption!='') {
+		            	priceplus += parseFloat(json_customoption[attribute_id]['prices']['finalPrice']['amount']);
+		            }
+		        })
+		        return priceplus;
+			}
+
+			// fomat price
+			function convertPrice(price,configuable_currency_symbol,template_price){
+				var price_tp = template_price.replace(configuable_currency_symbol,'');
+				return template_price.replace(price_tp,price);
+			}
+
+			// vẽ đường chéo
+			function diagonalLine(){
+				if ($('.label-attribute-f').length) {
+					he = $('.label-attribute-f').outerHeight();
+					wi = $('.label-attribute-f').outerWidth();
+					$('#bsscanvas').attr('width',wi);
+					$('#bsscanvas').attr('height',he);
+					var c = document.getElementById("bsscanvas");
+					var ctx = c.getContext("2d");
+					ctx.beginPath();
+					ctx.moveTo(0, 0);
+					ctx.lineTo(wi, he);
+					ctx.lineWidth = 1;
+					ctx.strokeStyle = '#ccc';
+					ctx.stroke();
+					$('#bsscanvas').appendTo($('.label-attribute-f'));
+				}
+			}
+		});
+	</script>

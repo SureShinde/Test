@@ -1,0 +1,126 @@
+/**
+ * WARNING: Please don't edit this file. This file was generated automatically, your any changes on this file will be overwritten and lost.
+ * Updated on <?php echo date("Y-m-d H:i:s"); ?>
+ */
+
+<?php 
+$helper = $this->helper('Rootways\Megamenu\Helper\Data');
+$general = $this->getConfig("rootmegamenu_option",$this->_coreRegistry->registry('cssgen_store'));
+$general_value = $general['general'];
+
+$design = $this->getConfig("rootmegamenu_option",$this->_coreRegistry->registry('cssgen_store'));
+$design_value = $design['design'];
+
+
+if ( $general_value['topmenualignmenttype'] == 0) { 
+    $float = 'left'; $display = 'inline-block'; $clear = 'none'; $text_align = 'left';
+} elseif ( $general_value['topmenualignmenttype'] == 1) {
+    $float = 'none'; $display = 'inline-block'; $clear = 'none'; $text_align = 'right';
+} else {
+    $float = 'none'; $display = 'table-cell'; $clear = 'both'; $text_align = 'left';
+}
+?>
+.nav-sections, .rootmenu{ 
+    background: #<?php echo $design_value['bgcolor']; ?>;
+}
+.rootmenu .rootmenu-list{
+    text-align: <?php echo $text_align?>;
+}
+.rootmenu-list > li{
+    border-right-color: #<?php echo $design_value['mainbordercolor']; ?> !important;
+    float: <?php echo $float?>;
+    display: <?php echo $display?>;
+    clear: <?php echo $clear?> !important;
+}
+.rootmenu-list > li > a{ 
+    color: #<?php echo $design_value['fontcolor']; ?>;
+    font-size: <?php echo $design_value['fontsize']; ?>px;
+    text-transform: <?php echo $design_value['menulabel']; ?>;
+}
+.rootmenu-list > li:hover > a,
+.rootmenu-list > li > a:hover{
+  background: #<?php echo $design_value['hoverbgcolor']; ?>;
+  color: #<?php echo $design_value['hoverfontcolor']; ?>;
+}
+.rootmenu-list > li > a.active {
+    background: #<?php echo $design_value['activebgcolor']; ?>;
+      color: #<?php echo $design_value['activefontcolor']; ?>;
+}
+
+.rootmenu .title a,
+.rootmenu .title a{
+    color: #<?php echo $design_value['submenuheadingcolor']; ?>;
+    font-size: <?php echo $design_value['submenuheadingfontsize']; ?>px;
+}
+
+<?php if ($design_value['bgcolor'] == 1 ) { ?>
+    .megamenu {opacity:0; visibility:hidden;}
+    
+    .rootmenu-list li:hover .megamenu,
+    .rootmenu-list li:hover .contacthalfmenu,
+    .rootmenu-list li:hover .halfmenu,
+    .rootmenu-list li:hover .rootmenu-submenu  {transition: all 0.5s ease 0.6s;} 
+<?php } ?>
+
+
+
+
+
+.rootmenu > .rootmenu-list .halfmenu,
+.rootmenu > .rootmenu-list > li > .megamenu { 
+    background: #<?php echo $design_value['submenubgcolor']; ?>;
+    text-transform: <?php echo $design_value['sub_uppercase']; ?>;
+}
+
+.rootmenu > .rootmenu-list .halfmenu ul > li > a,
+.rootmenu > .rootmenu-list .fullmenu ul > li > a { color: #<?php echo $design_value['submenufountcolor']; ?>; }
+.rootmenu > .rootmenu-list .halfmenu ul > li > a:hover,
+.rootmenu > .rootmenu-list .fullmenu ul > li > a:hover {  color: #<?php echo $design_value['submenuhoverfontcolor']; ?>; }
+
+
+
+
+
+
+.topmenu_main,
+.rootmenu .tabmenu .verticalopen,
+.rootmenu .rootmenu-list .tabmenu { background: #<?php echo $design_value['tebingbgcolor']; ?> !important;}
+
+.rootmenu .tabmenu .tabimgtext,
+.rootmenu .rootmenu-list .view_all{
+    color: #<?php echo $design_value['tebingfontcolor']; ?>;
+    font-size: <?php echo $design_value['tebingfontsize']; ?>px;
+}
+.rootmenu .tabmenu .vertical-menu > li > a{
+    background: #<?php echo $design_value['tebingheadingbgcolor']; ?>;
+    border-bottom-color: #<?php echo $design_value['tebingheadingbordercolor']; ?> !important;
+    color: #<?php echo $design_value['tebingheadingfontcolor']; ?>;
+    font-size: <?php echo $design_value['tebingheadingfontsize']; ?>px;
+}
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li:hover > a{
+   background: #<?php echo $design_value['tebinghoverbgcolor']; ?>;
+   color: #<?php echo $design_value['tebingheadinghoverfontcolor']; ?>;
+    
+}
+.rootmenu .tabmenu .tabimgtext:hover{
+      color: #<?php echo $design_value['tebinghoverfontcolor']; ?>;
+}
+
+
+.rootmenu > .rootmenu-list .rootmenu-submenu li  a{
+    background: #<?php echo $design_value['simplesubbgcolor']; ?>;
+    border-bottom-color: #<?php echo $design_value['simplesubbordercolor']; ?> !important;
+    color: #<?php echo $design_value['simplesubfontcolor']; ?>;
+    font-size: <?php echo $design_value['simplesubfontsize']; ?>px !important;
+}
+.rootmenu > .rootmenu-list .rootmenu-submenu li a:hover,
+.rootmenu > .rootmenu-list .rootmenu-submenu li:hover > a{
+    background: #<?php echo $design_value['simplesubhoerbgcolor']; ?> !important;
+    color: #<?php echo $design_value['simplesubhoverfontcolor']; ?> !important;
+}
+
+@media only screen and (max-width:767px){
+    .rootmenu-list > li{
+        float: none !important;
+    }
+}

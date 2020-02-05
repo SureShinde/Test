@@ -1,0 +1,86 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_ConfigurableMatrixView
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2016 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_helper = $_objectManager->get('\Bss\ConfigurableMatrixView\Helper\Data');
+$_product = $_helper->getCurrentProduct();
+$quoteItems = [];
+$cart = $_objectManager->create('\Magento\Checkout\Model\Session')->getQuote()->getAllVisibleItems();
+foreach ($cart as $item) {
+	if ($item->getProductId() == $_product->getId() && $item->getProductType() == 'configurable') {
+		$item_id = $item->getOptionByCode('simple_product')->getProduct()->getId();
+		$quoteItems[$item_id] = $item->getQty();
+	}
+};
+$number_item =  count($quoteItems);
+?>
+<?php if ($_helper->getCurrentUrl() == 'checkout_cart_configure' && $number_item > 0): ?>
+	<script>
+		require(['jquery'],function($){
+			var item_cart = <?php echo json_encode($quoteItems) ?>;
+			$(document).ready(function(){
+				var handle_1 = setInterval(function(){
+					if ($('input.super-attribute-select,select.super-attribute-select,textarea.super-attribute-select').length) {
+						$('input.super-attribute-select,select.super-attribute-select,textarea.super-attribute-select').on("change paste keyup", function(){
+							loadQty();
+						})
+						clearInterval(handle_1);
+					}
+					
+				},500)
+				var handle_2 = setInterval(function(){
+					if ($('#bss-matrixview .child-product-matrix').length) {
+						loadQty();
+						clearInterval(handle_2);
+					}
+					
+				},200)
+			})
+			function loadQty(){
+				setTimeout(function(){
+					$('#bss-matrixview .child-product-matrix').each(function(){
+						if ($(this).find('input[name="child-product-matrix"]').length) {
+							product_id = $(this).find('input[name="child-product-matrix"]').val();
+							if (product_id && product_id !== 'undefined') {
+								if (item_cart[product_id]) {
+									$(this).find('*').css('visibility','')
+									$(this).find('.qty').val(item_cart[product_id]);
+								}else{
+									$(this).find('.qty').val('')
+									$(this).find('.qty').attr('disabled','disabled')
+									$(this).find('.ui-spinner-button').css('visibility','hidden')
+								}
+							}
+						}
+					})
+					jQuery('#bss-matrixview .qty').first().change();
+				},10)
+			}
+		})
+	</script>
+<?php endif ?>

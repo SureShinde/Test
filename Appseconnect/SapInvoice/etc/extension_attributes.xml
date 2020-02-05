@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Sales\Api\Data\InvoiceCreationArgumentsInterface">
+        <attribute code="invoice_number" type="string" />
+        <attribute code="customer_number" type="string" />
+        <attribute code="your_contact" type="string" />
+        <attribute code="payment_term" type="string" />
+        <attribute code="comment" type="string" />
+        <attribute code="posting_date" type="string" />
+        <attribute code="additional_charges" type="string" />
+        <attribute code="discount_charge" type="string" />
+        <attribute code="environmental_fees" type="string" />
+    </extension_attributes>
+</config>

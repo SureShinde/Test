@@ -1,0 +1,133 @@
+<strong style="text-transform:none;font-size: 2.2rem;
+font-weight: 300;">Additional Information</strong>
+<hr>
+<style>
+    .evn{
+        width:100%;height:auto;background-color:#eeeeee;padding:10px;
+    }
+    .odd{
+        width:100%;height:auto;padding:10px;
+    }
+    .container p{
+        margin-right: 50px;
+    }
+</style>
+<div class="container">
+<div class="row">
+    <div class="col-md-6">
+<div style="" class="evn">
+    Invoice Number
+    <p style="float:right">
+        <?php
+        if ($block->customSapInvoiceData()->getData('invoice_number') != null) {
+            print_r($block->customSapInvoiceData()->getData('invoice_number'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+
+<div style="" class="odd">
+    Customer Number
+    <p style="float:right">
+        <?php
+        if ($block->customSapInvoiceData()->getData('customer_number') != null) {
+            print_r($block->customSapInvoiceData()->getData('customer_number'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+
+<div style="" class="evn">
+    Your Contact
+    <p style="float:right">
+        <?php
+        if ($block->customSapInvoiceData()->getData('your_contact') != null) {
+            print_r($block->customSapInvoiceData()->getData('your_contact'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+
+<div style="" class="odd">
+    Payment Term
+    <p style="float:right">
+        <?php
+        if ($block->customSapInvoiceData()->getData('payment_term') != null) {
+            print_r($block->customSapInvoiceData()->getData('payment_term'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+
+<div style="" class="evn">
+    Comment
+    <p style="float:right"><?php
+        if ($block->customSapInvoiceData()->getData('comment') != null) {
+            print_r($block->customSapInvoiceData()->getData('comment'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+    </div>
+    <div class="col-md-6 col-right">
+<div style="" class="evn">
+    Posting Date
+    <p style="float:right">
+        <?php
+        if ($block->customSapInvoiceData()->getData('posting_date') != null) {
+            print_r($block->customSapInvoiceData()->getData('posting_date'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+<div style="" class="odd">
+    Additional Charges
+    <p style="float:right"><?php
+        if ($block->customSapInvoiceData()->getData('additional_charges') != null) {
+            print_r($block->customSapInvoiceData()->getData('additional_charges'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+<div style="" class="evn">
+    Discount Charge
+    <p style="float:right">
+        <?php
+        if ($block->customSapInvoiceData()->getData('discount_charge') != null) {
+            print_r($block->customSapInvoiceData()->getData('discount_charge'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+<div style="" class="odd">
+    Environmental Fees
+    <p style="float:right"><?php
+        if ($block->customSapInvoiceData()->getData('environmental_fees') != null) {
+            print_r($block->customSapInvoiceData()->getData('environmental_fees'));
+        } else {
+            echo "xxx";
+        }
+        ?>
+    </p>
+</div>
+    </div>
+</div>
+</div>
+<br />
+<br>

@@ -1,0 +1,12 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Appseconnect\SapInvoice\Model\Pdf\Invoice"/>
+
+    <!-- <type name="Magento\Sales\Api\InvoiceOrderInterface">
+        <plugin name="addCustomAttribute" type="Appseconnect\__SapInvoice\Plugin\InvoiceOrderInterfacePlugin" sortOrder="1" />
+    </type> -->
+
+    <type name="Magento\Sales\Api\InvoiceOrderInterface">
+        <plugin name="addCustomAttribute" type="Appseconnect\SapInvoice\Plugin\InvoiceOrderPlugin" sortOrder="1" />
+    </type>
+
+</config>

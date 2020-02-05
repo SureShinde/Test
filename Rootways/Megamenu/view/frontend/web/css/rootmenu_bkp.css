@@ -1,0 +1,653 @@
+@charset "utf-8";
+.rootmenu > .rootmenu-list .halfmenu ul > li { clear:both;}
+.rootmenu > .rootmenu-list .linksmenu ul > li { clear:both;}
+.rootmenu > .rootmenu-list .halfmenu ul > li > a { width:100%; float:left;}
+.rootmenu .sub-cat-name {display: table-cell;vertical-align: middle;}
+.rootmenu .main-category-name {text-align: center;display: inline-block;}
+.rootmenu .main-category-icon {width: 18px;height: 18px;display: block;margin-right: 10px;margin-top: 5px;float: left;}
+.rootmenu .main-category-icon img {width: 18px;height: 18px;}
+.rootmenu {position: relative;font-size: 13px;padding: 0;margin: 0;width: 100%;z-index: 99;}
+.rootmenu .clearfix:before {content: ""; display: table;}
+.rootmenu .clearfix:after {content: ""; display: table; clear: both;}
+.rootmenu .clearfix {zoom: 1;}
+.rootmenu * { -webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;  text-decoration: none;  -webkit-font-smoothing: antialiased;}
+.rootmenu li {margin: 0px;}
+.rootmenu > .rootmenu-list {margin: 0 auto 0 auto;width: 100%;display: table;padding: 0px;}
+.rootmenu > .rootmenu-list > li {text-align: center;border-right: 1px solid;margin: 0px;padding: 0px;list-style: none;}
+.rootmenu > .rootmenu-list > li:hover > a .homeicon {display: inline-block;width: 15px;height: 14px;background: url(../images/homeicon.png) 0px 0px no-repeat;text-indent: -99999px;}
+.rootmenu > .rootmenu-list > li:first-child > a {-webkit-border-radius: 2px 0px 0px 0px;-moz-border-radius: 2px 0px 0px 0px;border-radius: 2px 0px 0px 0px;}
+.rootmenu > .rootmenu-list > li:last-child > a {-webkit-border-radius: 2px 0px 0px 0px;-moz-border-radius: 2px 0px 0px 0px;border-radius: 2px 0px 0px 0px;}
+.rootmenu > .rootmenu-list > li:last-child {border-right: 0px;}
+.rootmenu > .rootmenu-list > li > a {display: block;padding:15px 5px;line-height:15px;position: relative;}
+.rootmenu > .rootmenu-list > li > a > .homeicon {display: inline-block;font-size: 18px;width: 15px;height: 14px;background: url(../images/homeicon.png) -15px 0px no-repeat;text-indent: -99999px;margin: 0 8px;}
+.rootmenu > .rootmenu-list > li > a > em {display: none;}
+.rootmenu > .rootmenu-list > li > a.active .homeicon {display: inline-block;width: 15px;height: 14px;background: url(../images/homeicon.png) 0px 0px no-repeat;text-indent: -99999px;}
+.rootmenu > .rootmenu-list > li > .megamenu {width: 100%;text-align: left;margin: 0px;padding: 8px;position: absolute;top: 45px;left: 0;box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); background: #fff;  border-top: 3px solid #097FB4; -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);}
+.rootmenu > .rootmenu-list > li > .megamenu .carousel-control.left {top: 38% !important;}
+.rootmenu > .rootmenu-list > li > .megamenu .carousel-control.right {top: 38% !important;}
+.rootmenu > .rootmenu-list > li > .megamenu .catlinksstyle {display: block;margin: 0;padding: 0px 0;font-size: 13px;}
+.rootmenu > .rootmenu-list > li > .megamenu .catlinksstyle > li {color: #424242;display: block;line-height: 18px;}
+.rootmenu > .rootmenu-list > li > .megamenu .catlinksstyle > li > span {font-size: 11px;}
+.rootmenu > .rootmenu-list > li > .megamenu .catlinksstyle > li > a {padding: 8px 6px 5px 13px;font-weight: normal;display: block;background: url(../images/cat_arrow.png) 0px 10px no-repeat;background-size: 4px;}
+.rootmenu > .rootmenu-list > li > .megamenu .catlinksstyle > li > a > .fa-caret-right {margin-right: 4px;}
+.rootmenu > .rootmenu-list > li > .megamenu .carousel-caption {bottom: 0px;background-color: rgba(0,0,0,0.7);font-size: 13px;height: 31px;left: 0;padding: 7px 0;right:0; width: 100%;}
+.rootmenu > .rootmenu-list > li .categoriesmenu {font-size: 13px;}
+.rootmenu > .rootmenu-list > li .categoriesmenu .title {background: none;border-bottom: 1px solid #E8E8E8;padding:5px 5px 5px 0;font-size: 15px;text-transform: none;color: #3399cc;margin-bottom: 7px;text-align: left;height: 32px;list-style: none;text-transform: uppercase;font-weight: 600;}
+.rootmenu > .rootmenu-list .categoriesmenu ul {margin: 0px;padding: 0px;}
+.rootmenu > .rootmenu-list .categoriesmenu ul > li {display: block;white-space: nowrap;text-align: left;margin-bottom: 0px !important;}
+.rootmenu > .rootmenu-list .categoriesmenu ul > li > a {background: url(../images/cat_arrow.png) 0px 9px no-repeat;font-weight: normal;line-height:18px;text-align: left;padding: 5px 10px 5px 12px;border-right: 0 none;display: block;background-size: 4px;}
+.rootmenu > .rootmenu-list .categoriesmenu ul > li > a > .fa-caret-right {margin-right: 10px;}
+.rootmenu > .rootmenu-list .categoriesmenu ul > li > a:hover {text-decoration: underline;}
+.rootmenu > .rootmenu-list .linksmenu {font-size: 13px;}
+.rootmenu > .rootmenu-list .linksmenu ul {margin: 0px;padding: 0px;}
+.rootmenu > .rootmenu-list .linksmenu ul > li {display: block;text-align: left;}
+.rootmenu > .rootmenu-list .linksmenu ul > li > a {font-weight: normal;line-height: 18px;text-align: left;padding: 6px 10px;background-image: none;border-right: none;display: block;}
+.rootmenu > .rootmenu-list .linksmenu ul > li > a > .fa-caret-right {margin-right: 10px;}
+.rootmenu > .rootmenu-list .linksmenu ul > li > a:hover {text-decoration: underline;}
+.rootmenu > .rootmenu-list .linksmenu img {float: left;margin-right: 10px;}
+.rootmenu > .rootmenu-list .linksmenu .cat-arrow {background: url(../images/cat_arrow.png) 3px center no-repeat;display: table-cell;height: 15px;margin-left: 11px;width: 15px;background-size: 4px;}
+.rootmenu > .rootmenu-list .contentmenu .title { border-bottom: 1px solid #CCC; padding: 15px 5px 9px 0;font-size: 15px;text-transform: none;font-weight: bold;color: #424242;margin-bottom: 7px; text-align: left; height: 50px; list-style: none;}
+.rootmenu > .rootmenu-list .contentmenu .normaltextmenu {font-weight: normal;line-height: 23px;text-align: justify; color: #424242; font-size: 13px;}
+.rootmenu > .rootmenu-list .product-thumbnail .title { border-bottom: 1px solid #CCC;padding: 9px 5px 9px 0px;font-size: 15px;text-transform: none;font-weight: bold;color: #424242;margin-bottom: 7px;text-align: left;height: 39px;list-style: none;}
+.rootmenu > .rootmenu-list .product-thumbnail .normaltextmenu {font-weight: normal;line-height: 23px;text-align: justify;color: #424242;font-size: 13px;}
+.rootmenu > .rootmenu-list .product-thumbnail img { width: 100%;}
+.rootmenu > .rootmenu-list .brandsmenu .title {padding: 15px 5px 0px 0px;font-size: 15px;text-transform: none;font-weight: bold;color: #424242;margin-bottom: 0px; text-align: left;height: 39px;list-style: none;}
+.rootmenu > .rootmenu-list .brandsmenu .normaltextmenu {font-weight: normal;line-height: 23px;text-align: justify;color: #424242;font-size: 13px;}
+.rootmenu > .rootmenu-list .brandsmenu img {width: 100%;}
+.rootmenu > .rootmenu-list .brandsmenu .logoicon {margin: 1% 0%;}
+.rootmenu > .rootmenu-list .brandsmenu .logoicon img {width: 100%;border: solid 1px #e1e1e1;border-radius: 2px;}
+.rootmenu > .rootmenu-list .tabmenu .tabimtag {width: 100%;display: block; text-align:center;}
+.rootmenu > .rootmenu-list .tabmenu .tabimtag img {margin: 0 auto;vertical-align: middle;}
+.rootmenu > .rootmenu-list .tabmenu .tabimgtext {text-align: center;line-height: 23px;}
+.rootmenu > .rootmenu-list .tabmenu .mainmenuwrap {width: 100%;display: block;position: relative;}
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu {display: block;margin: 0px;padding: 0px;font-size: 12px;}
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li > a {display: block;border-bottom: solid 1px;padding: 11px 15px;line-height: 24px;font-weight:600;}
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li > a > span {float: right;}
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li > a:hover,
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li:hover>a {text-decoration: none;}
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li .openactive {display: block;}
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li:hover .verticalopen {display: block;}
+.rootmenu > .rootmenu-list .tabmenu .verticalopen {display: none;position: absolute;right: 0px;top: 0px;color: #000;}
+.rootmenu > .rootmenu-list .tabmenu .vertical-menu .clearfix .verticalopen:first-child {display: block;}
+.rootmenu > .rootmenu-list .tabmenu .cat-arrow {background: url(../images/cat_arrow.png) 0px 3px no-repeat;float: left;height: 15px;margin-bottom: 11px;width: 15px;background-size: 4px;}
+
+.rootmenu .tabmenu02{ min-height:50px; padding:0px !important;}
+.rootmenu .tabmenu02 .mainmenuwrap02{ width:100%; display:block; position:relative; }
+.rootmenu .tabmenu02 .vertical-menu02{ display:block; padding:0px !important;font-size:12px;background: #097FB4;}
+.rootmenu > .rootmenu-list > li > .tabmenu02 > .mainmenuwrap02 > .vertical-menu02 > li{float: left; width: 16.20%; clear:none;}
+.rootmenu .tabmenu02 .vertical-menu02 > li{ display:block;padding:9px 22px;  color:#424242; line-height:24px; font-weight:bold; /*height:73px;*/ }
+.rootmenu .tabmenu02 .vertical-menu02 > li.main_openactive02 .openactive02{display: block;}
+.rootmenu .tabmenu02 .vertical-menu02 > li.main_openactive02 .verticalopen02{ display: block;}
+.rootmenu .tabmenu02 .vertical-menu02 > li.main_openactive02 {background-color:#ffffff; color:#000000;border-bottom: 0px;}
+.rootmenu .tabmenu02 .vertical-menu02 > li.main_openactive02 em {color: #000000;}
+.rootmenu .tabmenu02 .vertical-menu02 > li.main_openactive02:hover {background-color:#ffffff; color:#005daa;border-bottom: 0px;}
+.rootmenu .tabmenu02 .vertical-menu02 > li > a > span{ margin-right:13px; float:left;}
+.rootmenu .tabmenu02 .vertical-menu02 > li > a > span > img{ width:50px; height:50px; }
+.rootmenu .tabmenu02 .vertical-menu02 > li > a > em{ color:#FFFFFF; float:left; line-height:52px; font-style:normal; font-size:15px; font-weight:normal; text-transform:uppercase;}
+.rootmenu .tabmenu02 .root-col-1.verticalopen02{ display: none; position:absolute; right:0px; top:73px; background-color:#fff; color:#000; padding-top:15px; padding-bottom:5px;}
+.rootmenu .tabmenu02 .verticalopen02 .root-col-4.clearfix {padding: 0px;}
+.rootmenu .tabmenu02 .vertical-menu02 > li.main_openactive02:hover .verticalopen02{ display: block !important;}
+.rootmenu .tabmenu02 .vertical-menu02 .clearfix .verticalopen02:first-child{display:block;}
+.rootmenu .tabmenu02 .title a {color: #666 !important;}
+.rootmenu .tabmenu02 .ulliststy02 {list-style: none;padding: 0;margin: 0;}
+.rootmenu .tabmenu02 .ulliststy02 li { width:100%; float:left; margin:4px 0;}
+.rootmenu .tabmenu02 .ulliststy02 li a { letter-spacing:0.4px; color:#666;}
+
+
+.topmenu02-categories li {margin: 5px 0px 3px 0px;}
+
+.rootmenu > .rootmenu-list .empty_category > span {color: #f47d4e;font-size: 13px;position: absolute;right: 40%;top: 40%;}
+.rootmenu > .rootmenu-list .view_all {float: right;margin: 9px 0px 0px 0px;}
+.rootmenu > .rootmenu-list .halfmenu {width: 50%;text-align: left;margin: 0px;padding:0px;position: absolute;top:47px;font-size: 13px;
+box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); background: #fff; border-top: 3px solid #097FB4;-webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);-moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);}
+.rootmenu > .rootmenu-list .halfmenu .title { border-bottom: 1px solid #CCC; padding: 9px 5px 9px 0px; font-size: 15px; text-transform: none; font-weight: bold; color: #424242; margin-bottom: 7px; text-align: left; list-style: none;}
+.rootmenu > .rootmenu-list .halfmenu ul {margin: 0px;padding: 0px;}
+.rootmenu > .rootmenu-list .halfmenu ul > li {display: block;text-align: left;}
+.rootmenu > .rootmenu-list .halfmenu ul > li > a { font-weight: normal; line-height: 18px; text-align: left; padding: 3px 10px 3px 6px; background-image: none; border-right: 0 none; display: block;}
+.rootmenu > .rootmenu-list .halfmenu .cat-arrow { background: url(../images/cat_arrow.png) 3px center no-repeat;background-size: 4px; display: table-cell; height: 15px; margin: 10px; width: 15px;}
+.rootmenu > .rootmenu-list .halfmenu ul li img {float: left; margin-right: 10px;}
+.rootmenu > .rootmenu-list .rootmenu .contacthalfmenu .title { border-bottom: 1px solid #CCC; padding: 9px 5px 9px 0px; font-size: 15px; text-transform: none; font-weight: bold; color: #424242; margin-bottom: 7px; text-align: left; height: 39px; list-style: none;}
+.rootmenu > .rootmenu-list .normaltext { font-size: 13px; line-height: 23px; font-weight: normal; text-align: justify;}
+.rootmenu > .rootmenu-list .contactdetail {list-style: none;margin: 0px;padding: 0px;}
+.rootmenu > .rootmenu-list .contactdetail li {padding: 0px 0px;}
+.rootmenu > .rootmenu-list .contactdetail li a {text-decoration: underline;color: #000;}
+.rootmenu > .rootmenu-list .menu_form {width: 100%;display: block;}
+.rootmenu > .rootmenu-list .menu_form .btnstyle01 {font-weight:600; text-transform: uppercase; color: #fff; font-size: 14px; height: 34px; cursor: pointer;}
+.rootmenu > .rootmenu-list .menu_form input[type="text"] { width: 100%; border: 1px solid #e2e2e2; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; color: #000; font-size: 13px; padding: 8px 5px; margin-bottom: 8px;}
+.rootmenu > .rootmenu-list .menu_form textarea { width: 100%;border: 1px solid #e2e2e2; border-radius: 5px; color: #000; font-size: 13px; padding: 8px 5px; margin-bottom: 8px; min-height: 122px;}
+.rootmenu > .rootmenu-list .menu_form input[type="submit"] { min-width:75px; color: #ffffff; display: block; height:32px; float: right; border: solid 0px; margin-right: 15px; -webkit-border-radius: 2px; -moz-border-radius: 2px;  border-radius: 2px; background-color: #097fb4; text-transform:uppercase;}
+.rootmenu > .rootmenu-list .menu_form input[type="button"] { min-width:75px; color: #ffffff; display: block; height:32px; float: right; border: solid 0px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;  background-color: #097fb4; text-transform:uppercase;}
+.rootmenu > .rootmenu-list .rootmenu-submenu { position: absolute; top: 47px; min-width: 230px; z-index: 1000; margin: 0px; padding: 0px; font-size: 12px;  list-style: none;box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);  background: #fff; border-top: 3px solid #097FB4; -webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);}
+.rootmenu > .rootmenu-list .rootmenu-submenu li {margin: 0;padding: 0;position: relative;}
+.rootmenu > .rootmenu-list .rootmenu-submenu li > a {font-weight: normal; text-align: left; border-bottom: 1px solid; display: block; line-height: 22px; padding: 8px 15px 8px 15px; text-transform: none; border-right: solid 0px #000; height: auto;}
+.rootmenu > .rootmenu-list .rootmenu-submenu li > a > .fa-caret-right {margin-right: 4px;}
+.rootmenu > .rootmenu-list .rootmenu-submenu li:hover>a {background-image: none;}
+.rootmenu > .rootmenu-list .rootmenu-submenu > li {position: relative;margin: 0px;padding: 0px;}
+.rootmenu > .rootmenu-list .rootmenu-submenu .cat-arrow {background: url(../images/cat_arrow.png) 0px 3px no-repeat;float: right;height: 15px;margin-bottom: 11px;width: 15px;background-size: 4px;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub > li {position: relative;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub > li > a { font-weight: normal; text-align: left; border-bottom: 1px solid #e2e2e2; display: block; line-height: 22px; padding: 8px 15px 8px 15px; text-transform: none;  border-right: solid 0px #000;height: auto;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub > li > a > .fa-caret-right {margin-right: 4px;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub > li:hover>a {background-image: none;text-decoration: none !important;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub > li {position: relative;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub > li > a { text-align: left; border-bottom: 1px solid #e2e2e2;display: block;line-height: 22px;padding: 8px 15px 8px 15px; text-transform: none; border-right: solid 0px #000; height: auto;font-weight: normal;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub > li > a > .fa-caret-right {margin-right: 4px;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub > li > a:hover {background-image: none;background-color: #fff;border-radius: 0px !important;color: #000;text-decoration: none !important;}
+.rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub > li:hover>a {background-image: none;background-color: #e2e2e2;color: #000;}
+.rootmenu > .rootmenu-list .productslist {display: block;padding: 15px;}
+.rootmenu > .rootmenu-list .probox01 { width: 100%; display: block; padding: 18px; float: left; margin: 0px 0px 0px 0px; position: relative; background-color: #fff; border: solid 1px #f5f5f5;}
+.rootmenu > .rootmenu-list .probox01imgwp {display: block;}
+.rootmenu > .rootmenu-list .proimg {display: block;text-align: center;vertical-align: middle;}
+.rootmenu > .rootmenu-list .proimg > a {display: block;text-align: center;}
+.rootmenu > .rootmenu-list .proinfo {width: 100%;padding: 15px 0px 0px 0px;}
+.rootmenu > .rootmenu-list .proname {width: 100%;display: block;color: #5e5e5e;font-size: 14px;text-align: center;}
+.rootmenu > .rootmenu-list .proname a {display: block;color: #5e5e5e;font-weight: normal;}
+.rootmenu > .rootmenu-list .proname a:hover {color: #f26100;text-decoration: underline;}
+.rootmenu > .rootmenu-list .addtolinks {width: 100%;float: left;margin: 0px;padding: 10px 0 0 0;}
+.rootmenu > .rootmenu-list .addtolinks a {color: #6c6c6c;font-size: 11px;text-decoration: underline;}
+.rootmenu > .rootmenu-list .addtolinks a:hover {color: #f26100;text-decoration: none;}
+.rootmenu > .rootmenu-list .addtolinks .add-to-wish {float: left;}
+.rootmenu > .rootmenu-list .addtolinks .add-to-comp {float: right;}
+.rootmenu > .rootmenu-list .pricebox {width: 100%;float: left;margin: 0px;padding: 10px 0 0 0;}
+.rootmenu > .rootmenu-list .pricebox span {float: left;color: #5e5e5e;font-size: 14px;padding: 5px 0;font-weight: bold;}
+.rootmenu > .rootmenu-list .pricebox span em {font-style: normal;color: #bebebe;font-size: 12px;}
+.rootmenu > .rootmenu-list .addtocart-but { float: right;height: 30px;line-height: 30px;background: #ea8921;color: #fff; font-size: 13px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; padding: 0 15px 0 10px;}
+.rootmenu > .rootmenu-list .addtocart-but:hover { text-decoration:none;}
+.rootmenu > .rootmenu-list .rootmenu-mobile { display: none; position: absolute; top: 0; right: 0; padding: 7px 12px 7px 12px; margin: 6px 7px 0px 7px; border-radius: 4px 4px 4px 4px; border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) #002c4c;  border-image: none; border-style: solid; border-width: 1px; box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 1px 2px rgba(0,0,0,0.3); color: #333333; cursor: pointer; font-size: 14px; line-height: 20px; text-align: center; text-shadow: 0 1px 1px rgba(255,255,255,0.75); vertical-align: middle; background-color: #424242;}
+.rootmenu > .rootmenu-list .rootmenu-mobile:hover { box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.2); background-color: #252525; border-color: #000;}
+.rootmenu > .rootmenu-list .rootmenu-mobile > .icon-bar { display: block; width: 18px; height: 2px; background-image: none; background-color: #f5f5f5; -webkit-border-radius: 1px; -moz-border-radius: 1px; border-radius: 1px; -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.25); -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.25); box-shadow: 0 1px 0 rgba(0,0,0,0.25); margin-top: 3px;}
+.rootmenu > .rootmenu-list .rootmenu-click { position: absolute; top: 0; right: 0; display: none; cursor: pointer; z-index: 100; height: 45px;}
+.rootmenu > .rootmenu-list .rootmenu-click > .rootmenu-arrow { float: right; display: block; height: 23px; width: 25px; margin-top: 10px; margin-right: 8px; background: url(../images/down.png) no-repeat top left; background-size: 25px;}
+.rootmenu > .rootmenu-list .rootmenu-rotate { -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg);}
+.rootmenu > .rootmenu-list .rootmenu-text { width: 50%; position: absolute; top: 0px; left: 0px; color: #fff; line-height: 44px; text-indent: 15px; font-weight: normal; font-size: 20px; display: none; text-transform: none;}
+.rootmenu > .rootmenu-list .rootmenu-addimg {width: 100%;display: block;}
+.rootmenu > .rootmenu-list .rootmenu-addimg img {width: 100%;}
+.rootmenu > .rootmenu-list .rootmegamenu_block img {width: 100%;}
+.rootmenu > .rootmenu-list .root-col-6 {width: 16.66666666666667%;float: left;display: block;padding: 10px;}
+.rootmenu > .rootmenu-list .root-col-5 {width: 20%;float: left;display: block;padding: 10px;}
+.rootmenu > .rootmenu-list .root-col-4 {width: 25%;float: left;display: block;padding: 10px;}
+.rootmenu > .rootmenu-list .root-col-3 {width: 33.33333333333333%;float: left;display: block;padding: 10px;}
+.rootmenu > .rootmenu-list .root-col-2 {width: 50%;float: left;display: block;padding: 10px;}
+.rootmenu > .rootmenu-list .root-col-1 {width: 100%;float: left;display: block;padding: 10px;}
+.rootmenu > .rootmenu-list .root-col-70 {width: 66.66666666666667%;float: left;display: block;padding: 10px;}
+.rootmenu > .rootmenu-list .root-col-75 {width: 75%;float: left;display: block;padding: 10px;}
+
+.rootmenu > .rootmenu-list .root-sub-col-1 {width:8.33333333%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-2 {width:16.666666%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-3 {width:25%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-4 {width:33.33333333%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-5 {width:41.66666667%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-6 {width:50%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-7 {width:58.33333333%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-8 {width:66.66666667%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-9 {width:75%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-10 {width:83.33333333%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-11 {width:91.66666667%;float: left;display: block;}
+.rootmenu > .rootmenu-list .root-sub-col-12 {width:100%;float: left;display: block;}
+
+.rootmenu > .rootmenu-list .grid-item-1 {width: 100%;padding: 10px;}
+.rootmenu > .rootmenu-list .grid-item-2 {width: 48%;padding: 10px;}
+.rootmenu > .rootmenu-list .grid-item-3 {width: 32%;padding: 10px;}
+.rootmenu > .rootmenu-list .grid-item-4 {width: 24%;padding: 10px;}
+.rootmenu > .rootmenu-list .grid-item-5 {width: 19%;padding: 10px;}
+.rootmenu > .rootmenu-list .grid-item-6 {width: 15%;padding: 10px;}
+.rootmenu > .rootmenu-list .grid-item-70 {width: 65%;padding: 10px;}
+.rootmenu > .rootmenu-list .grid-item-75 {width: 74%;padding: 10px;}
+.rootmenu > .rootmenu-list #not_activated {background: #000 none repeat scroll 0 0;color: #ff0000;padding: 10px;}
+.rootmenu > .rootmenu-list #menu_submit_loader {background: #097fb4 url("../images/category-loader.gif");border-radius: 10px;font-size: 0;height: 49px; width: 49px;}
+.nav-sections-item-content > .rootmenu {display: block;}
+.nav-sections-item-content > .page-main {display: block;}
+
+
+
+
+
+
+
+/*Responsive Class*/
+@media only screen and (min-width:901px){
+    .rootmenu > .rootmenu-list .halfmenu ul .halfwidth-popup-sub-sub {
+     background: #f6f6f6 none repeat scroll 0 0;
+      border:1px solid #EDEDED;
+      border-bottom: 2px solid #0092d7;
+      box-shadow: 0 5px 5px #cccccc, 0 0 0 #cccccc inset;
+      display: none;
+      left:17%;
+      margin: 0;
+      min-width: 180px;
+      padding: 0;
+      position: absolute;
+      z-index: 99;
+      top:40px;
+    }
+    .rootmenu > .rootmenu-list .halfmenu ul li:hover .halfwidth-popup-sub-sub { display:block;}
+    .rootmenu > .rootmenu-list .halfmenu ul li { position:relative;}
+    .rootmenu > .rootmenu-list .linksmenu ul .level3-popup {
+     background: #f6f6f6 none repeat scroll 0 0;
+      border:1px solid #EDEDED;
+      border-bottom: 2px solid #0092d7;
+      box-shadow: 0 5px 5px #cccccc, 0 0 0 #cccccc inset;
+      display: none;
+      left:21%;
+      margin: 0;
+      min-width: 180px;
+      padding: 0;
+      position: absolute;
+      z-index: 99;
+      top:30px;
+    }
+    .rootmenu > .rootmenu-list .linksmenu ul > li:hover .level3-popup { display:block;}
+    .rootmenu > .rootmenu-list .linksmenu ul > li { position:relative;}
+    .rootmenu .catproductimg{display: block;}
+}
+
+@media only screen and (min-width:230px) and (max-width:900px) { 
+    .level3-popup{ display:none; padding-left: 20px !important; }
+    .halfwidth-popup-sub-sub {display:none; padding-left: 20px !important; }
+    .rootmenu > .rootmenu-list .halfmenu .cat-arrow { display:none !important;}
+    .rootmenu > .rootmenu-list .linksmenu .cat-arrow { display:none !important;}
+    
+    .rootmenu .tabmenu02 .vertical-menu02 > li.main_openactive02 .verticalopen02{position:relative !important; display: block !important; opacity: 1 !important; visibility: visible !important; top: 0px; }
+	.rootmenu > .rootmenu-list > li > .tabmenu02 > .mainmenuwrap02 > .vertical-menu02 > li{ width: 100%;/* float: none !important;*/ background:#fff;}
+	.rootmenu .tabmenu02 .vertical-menu02 > li.main_openactive02:hover {border-bottom:1px solid #e2e2e2;}	
+	.rootmenu .tabmenu02 .verticalopen02 {display: block;position: relative;	right: 0px;	top: 0;}
+	.rootmenu .tabmenu02 .vertical-menu02 > li > .verticalopen02 .root-col-4{ width:33.33% !important; margin:0px; padding:0px; }
+}
+
+
+@media only screen and (min-width:768px){
+   .rootmenu > .rootmenu-list li:hover .contacthalfmenu {display: block;}
+    .rootmenu > .rootmenu-list li:hover .halfmenu {opacity: 1;visibility: visible;transform: translateY(0);}
+    .rootmenu > .rootmenu-list > li > .rootmenu-submenu {opacity: 0;visibility: hidden;transform: translateY(35px);transition: all .3s ease;}
+    .rootmenu > .rootmenu-list > li:hover > .rootmenu-submenu {opacity: 1;visibility: visible;transform: translateY(0);}
+    .rootmenu > .rootmenu-list > li:hover .megamenu {opacity: 1;visibility: visible;transform: translateY(0);}
+    .rootmenu > .rootmenu-list .rootmenu-submenu .rootmenu-submenu-sub {
+      min-width: 180px;
+      position: absolute;
+      left: 65%;
+      top: 15px;
+      margin: 0px;
+      padding: 0px;
+      border-bottom: solid 2px #097fb4;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(35px);
+      transition: all .3s ease;
+    }
+    .rootmenu > .rootmenu-list .rootmenu-submenu .rootmenu-submenu-sub li:hover .rootmenu-submenu-sub-sub {
+      list-style: none;
+      margin: 0px;
+      z-index: 100;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .rootmenu > .rootmenu-list .rootmenu-submenu .rootmenu-submenu-sub .rootmenu-submenu-sub-sub {
+      min-width: 180px;
+      position: absolute;
+      left: 65%;
+      top: 15px;
+      margin: 0px;
+      padding: 0px;
+      border-bottom: solid 2px #097fb4;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(35px);
+      transition: all .3s ease;
+    }
+    .rootmenu > .rootmenu-list .rootmenu-submenu .rootmenu-submenu-sub .rootmenu-submenu-sub-sub > li {
+      position: relative;
+      padding: 0px;
+      margin: 0px;
+    }
+    .rootmenu > .rootmenu-list .rootmenu-submenu li:hover .rootmenu-submenu-sub {
+      list-style: none;
+      margin: 0px;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .rootmenu > .rootmenu-list .mobilelink {display: none;}
+    .rootmenu > .rootmenu-list .tabmenu .tabimtag img {max-height: 90px;max-width: 150px;}
+    .rootmenu > .rootmenu-list .megamenu {opacity: 0;visibility: hidden;transform: translateY(35px);transition: all .3s ease;}
+    .rootmenu > .rootmenu-list .halfmenu {opacity: 0;visibility: hidden;transform: translateY(35px);transition: all .3s ease;}
+}
+
+@media only screen and (max-width:767px){
+    
+    .rootmenu {
+      width: 100%;
+      padding: 0px 0px 0px 0px !important;
+      background-color: #fff;
+      margin: 0px 0px;
+      padding: 0;
+      background-color: #199CD7;
+      font-size: 14px !important;
+    }
+    .rootmenu > .rootmenu-list .root-col-6,
+    .rootmenu > .rootmenu-list .root-col-5,
+    .rootmenu > .rootmenu-list .root-col-4,
+    .rootmenu > .rootmenu-list .root-col-3,
+    .rootmenu > .rootmenu-list .root-col-2,
+    .rootmenu > .rootmenu-list .root-col-1,
+    .rootmenu > .rootmenu-list .root-col-70,
+    .rootmenu > .rootmenu-list .root-col-75 {
+      width: 100%;
+      float: none;
+      padding: 10px;
+    }
+    .rootmenu > .rootmenu-list .rootmenu-click {
+      display: block;
+      padding-left: 15px;
+    }
+    .rootmenu > .rootmenu-list .rootmenu-click02 {
+      display: block;
+    }
+    .rootmenu > .rootmenu-list .rootmenu-mobile-open {
+      border-radius: 5px 5px 0 0;
+      -webkit-border-radius: 5px 5px 0 0;
+      -moz-border-radius: 5px 5px 0 0;
+    }
+    .rootmenu > .rootmenu-list .verticalopen {
+      position: relative !important;
+      display: block !important;
+    }
+    .rootmenu > .rootmenu-list .tabmenu .tabimtag {
+      height: auto !important;
+    }
+    .rootmenu > .rootmenu-list > li {
+      text-align: left;
+      border-right: 0px;
+    }
+    .rootmenu > .rootmenu-list > li > a > .homeicon {
+      display: none !important;
+    }
+    .rootmenu > .rootmenu-list > li > a > em {
+      display: block !important;
+      font-style: normal;
+    }
+    .rootmenu > .rootmenu-list > li .megamenu {
+      position: relative;
+      top: 0px;
+      left: 0px;
+      padding: 8px;
+      display: none;
+    }
+    .rootmenu > .rootmenu-list > li .megamenu .carousel .item img {width: 100%;}
+    .rootmenu > .rootmenu-list .rootmenu-mobile {display: block;}
+    .rootmenu > .rootmenu-list.mobile-sub {margin: 0px;padding: 0px;list-style: none;float: none;width: 100%;}
+    .rootmenu > .rootmenu-list.mobile-sub > li {margin: 0px 0px 0px 0px !important;display: block;position: relative;}
+    .rootmenu > .rootmenu-list.mobile-sub > li > a {
+      display: block;
+      color: #000 !important;
+      padding: 5px 10px;
+      line-height:24px;
+      border-bottom: solid 1px #ccc;
+    }
+    .rootmenu > .rootmenu-list.mobile-sub > li > a.active {color: #000 !important;box-shadow: none;}
+    .rootmenu > .rootmenu-list.mobile-sub > li:hover>a {background-color: #f5f5f5 !important;box-shadow: none;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu {position: static;width: 100%;padding: 0px;box-shadow: none;display: none;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu:after {border-color: transparent transparent transparent transparent;border-style: none;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu .cat-arrow {display: none !important;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu li {margin: 0px 0px 0px 0px !important;position: relative;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu li a {display: block;color: #000;padding:7px 20px;background: #fff !important;border-bottom: solid 1px #ccc;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu li a.active {color: #000 !important;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu li:hover>a {background-color: #f5f5f5 !important;color: #000;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub {width: 100%;position: static;left: 100%;top: 0;display: none;margin: 0px;padding: 0px;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub li {margin: 0px 0px 0px 0px !important;padding: 0px;position: relative;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub li a {display: block;color: #000;padding:5px 25px;background: #fff !important;border-bottom: solid 1px #ccc;font-weight: normal;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub li a.active {color: #000 !important;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub li:hover>a {background-color: #a5a5a5 !important;color: #fff;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub {
+      width: 100%;
+      position: static;
+      left: 100%;
+      top: 0;
+      display: none;
+      margin: 0px;
+      padding: 0px;
+    }
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub li {margin: 0px 0px 0px 0px !important;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub li a {display: block;color: #000;padding:5px 15px 5px 35px;background: #fff !important;border-bottom: solid 1px #ccc;font-weight: normal;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub li a.active {color: #000 !important;}
+    .rootmenu > .rootmenu-list .rootmenu-submenu-sub-sub li:hover>a {background-color: #606060 !important;color: #fff;}
+    .rootmenu > .rootmenu-list .rootmenu-text {display: block;}
+    .rootmenu > .rootmenu-list .skip-link.skip-nav {display: none !important;}
+    .rootmenu > .rootmenu-list .halfmenu {position: relative;width: 100%;top: 0px;display: none;}
+    .rootmenu > .rootmenu-list .catproductimg img {width: 100%;}
+    .rootmenu > .rootmenu-list .rootmenu .tabmenu .tabimtag img {width: 70%;}
+    .nav-sections {background: #f0f0f0 !important;}
+}
+
+@media only screen and (min-width:1024px) and (max-width:1199px) {
+.rootmenu .halfmenu { width:60%;}
+}
+
+@media only screen and (min-width:901px) and (max-width:1023px) {
+    .rootmenu-list > li > a{ padding-left:10px; padding-right:10px; }
+	.rootmenu .contacthalfmenu{ width:100%; }
+	.rootmenu-list .rootmenu-submenu .rootmenu-submenu-sub{ right:65%; left:auto !important; }
+	.rootmenu .halfmenu { width:65%;}
+}
+
+@media only screen and (min-width:768px) and (max-width:900px) {
+    .rootmenu .contacthalfmenu{ width: 100%; }
+    .linksmenu .root-col-5{width:33.33%  !important;}
+    .contentmenu .root-col-4{width:50%  !important;}
+    .product-thumbnail .root-col-4{width:50%  !important;}
+    .brandsmenu .root-col-4{width:33.33%  !important;}
+    .product-thumbnail .root-col-5 { width:33.33% !important;}
+    .rootmenu .tabmenu .verticalopen { width:100%}
+    .grid-item-1, .grid-item-2, .grid-item-3, .grid-item-4,
+    .grid-item-5, .grid-item-6, .grid-item-70,
+    .grid-item-75 {width:32% !important; float:none; padding:10px;}
+}
+
+@media only screen and (min-width:501px) and (max-width:767px) {
+    .rootmenu .halfmenu{ position:relative; width: 100%; top:0px;}
+    .rootmenu .contacthalfmenu{ position:relative; width: 100%; top:0px;}
+    .tabmenu .verticalopen .root-col-6{ width:33.33%  !important; }
+    .rootmenu .tabmenu .tabimgwpr {min-height:90px;}
+    .vertical-menu .root-col-5 {width:33.33%  !important;}
+    .rootmenu .tabmenu .tabimgtext {font-size: 11px !important;line-height:13px !important;}
+    .product-thumbnail .root-col-5 { width:50% !important;}
+    .linksmenu .root-col-4 { width: 50%  !important;}
+    .rootmenu li {position: relative;}
+    .grid-item-1, .grid-item-2, .grid-item-3, .grid-item-4, 
+    .grid-item-5, .grid-item-6, .grid-item-70, 
+    .grid-item-75 {width:47% !important; float:none; padding:10px;}
+    .rootmenu .tabmenu02 .vertical-menu02 > li > .verticalopen02 .root-col-4{ width:50% !important;}
+	
+	.nav-sections, .rootmenu {background: #FFF !important;}
+	.rootmenu-list > li > a.active {background: #F5F5F5 !important;}
+	.rootmenu { font-weight:normal !important;}
+	.rootmenu > .rootmenu-list .rootmenu-submenu li a:hover, .rootmenu > .rootmenu-list .rootmenu-submenu li:hover > a {background: #f5f5f5 !important;}
+	.rootmenu > .rootmenu-list .empty_category > span {position: relative;right: 0;}
+	.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li > a {padding: 5px 15px;}
+	.rootmenu > .rootmenu-list .product-thumbnail .root-col-5 { width:100% !important;margin: 1% 0 !important;} 
+	.rootmenu > .rootmenu-list .halfmenu.dropdowntitle .rootmegamenu_block {padding: 0 20px 0 0 !important;}
+}
+
+@media only screen and (min-width: 200px) and (max-width:500px) { 
+    .rootmenu .halfmenu{ position:relative; width: 100%; top:0px;}
+    .rootmenu .contacthalfmenu{ position:relative; width: 100%; top:0px;}
+    .tabmenu .verticalopen .root-col-6{ width:50%  !important; min-height: 217px; }
+    .rootmenu .tabmenu .tabimgwpr {min-height:90px;}
+    .vertical-menu .root-col-5 {width:33.33%  !important;}
+    .rootmenu .tabmenu .tabimgtext {font-size: 11px !important;line-height:13px !important;} 
+    .rootmenu li {position: relative;}
+    .grid-item-1, .grid-item-2, .grid-item-3, .grid-item-4,
+    .grid-item-5, .grid-item-6, .grid-item-70,
+    .grid-item-75 {width:100% !important; float:none; padding:10px;}
+    .rootmenu .tabmenu02 .vertical-menu02 > li > .verticalopen02 .root-col-4{ width:100% !important;}
+    
+    .rootmenu .tabmenu02 .vertical-menu02 > li > a > em {color: #000!important;}
+    .rootmenu > .rootmenu-list .root-sub-col-1,
+    .rootmenu > .rootmenu-list .root-sub-col-2,
+    .rootmenu > .rootmenu-list .root-sub-col-3,
+    .rootmenu > .rootmenu-list .root-sub-col-4,
+    .rootmenu > .rootmenu-list .root-sub-col-5,
+    .rootmenu > .rootmenu-list .root-sub-col-6,
+    .rootmenu > .rootmenu-list .root-sub-col-7,
+    .rootmenu > .rootmenu-list .root-sub-col-8,
+    .rootmenu > .rootmenu-list .root-sub-col-9,
+    .rootmenu > .rootmenu-list .root-sub-col-10,
+    .rootmenu > .rootmenu-list .root-sub-col-11,
+    .rootmenu > .rootmenu-list .root-sub-col-12 {width:100%;float: left;display: block;}
+	
+	.nav-sections, .rootmenu {background: #FFF !important;}
+	.rootmenu-list > li > a.active {background: #F5F5F5 !important;}
+	.rootmenu { font-weight:normal !important;}
+	.rootmenu > .rootmenu-list .rootmenu-submenu li a:hover, .rootmenu > .rootmenu-list .rootmenu-submenu li:hover > a {background: #f5f5f5 !important;}
+	.rootmenu > .rootmenu-list .empty_category > span {position: relative;right: 0;}
+	.rootmenu > .rootmenu-list .tabmenu .vertical-menu > li > a {padding: 5px 15px;}
+	.rootmenu > .rootmenu-list .product-thumbnail .root-col-5 { width:100% !important;margin: 1% 0 !important;} 
+	.rootmenu > .rootmenu-list .halfmenu.dropdowntitle .rootmegamenu_block {border-right: 0px solid #ececec !important;padding:0px !important;}
+    
+}
+
+.rootmenu > .rootmenu-list .product-thumbnail .root-col-5 { width:19%; border: 1px solid #e9e9e9;margin: 0 0.5%;} 
+
+
+
+/* Extra CSS */
+.rootmenu .tabmenu02 .title {
+    background: none;
+    border-bottom: 1px solid #CCC;
+    padding: 15px 5px 12px 0;
+    font-size: 15px;
+    text-transform: none;
+    font-weight: 700;
+    color: #666;
+    margin: 0px 35px 10px 15px;
+    text-align: left;
+    height: 50px;
+    list-style: none;
+    letter-spacing: 1px;
+}
+.shop-rang-blok { float:left;
+	width: 50%;
+	padding: 10px 6px;
+	box-sizing: border-box;
+	text-align: center;
+	max-height: 164px;
+}
+.shop-rang-img, .img-div img {
+	border-radius: 50%;
+	display: block;
+	width: 86px;
+	vertical-align: middle;
+	box-sizing: border-box;
+	margin: 0 auto;
+	height: 86px;
+	overflow: hidden;
+}
+.img-div img{
+	padding: 3px;
+	border: 1px solid #ddd;
+}
+.shop-rang-blok span {
+	font-size:12px;
+	font-family: futura-pt,sans-serif;
+	letter-spacing: .4px;
+	line-height: 2.14;
+	display: inline-block;
+	color: #666;
+	text-decoration: none;
+	line-height: 1;
+	margin: 10px 0;
+}
+
+.right-add-blok { float:left; position:relative;
+	width:100%;
+	padding: 10px 6px;
+	box-sizing: border-box;
+	text-align: center;
+	max-height: 164px;
+}
+.right-add-img {
+	display: block;
+	width:100%;
+	vertical-align: middle;
+	box-sizing: border-box;
+	margin: 0 auto;
+	height:100px;
+	overflow: hidden;
+	padding: 3px;
+	border: 1px solid #ddd;
+}
+.right-add-blok span {
+	position: absolute;
+	top: 45%;
+	right: 25px;
+	font-size: 15px;
+	font-weight: 700;
+	font-family: futura-pt,sans-serif;
+	letter-spacing: .4px;
+	line-height: 2.14;
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+	line-height: 1;
+	margin: 0;
+	/* width: 100%; */
+	text-align: right;
+}
+
+
+.menuheader {border-bottom: 1px dashed #d7d7d7;}
+.menufooter {border-top: 1px dashed #d7d7d7;}
+p { margin:0px;}
+.title {
+	font-size: 16px;
+	color: #000;
+	font-weight: 600;
+	margin: 10px 0 15px 0;
+	border-bottom: 1px solid #eaeaea;
+	padding: 0 0 7px 0;
+	text-transform: uppercase;
+}
+.categoryblockcontent, .main_categoryblockcontent{display: none;}
+
+/*dropdowntitle menu*/
+.rootmenu > .rootmenu-list .halfmenu.dropdowntitle .title {
+	border-bottom: 0px solid #CCC;
+	padding: 0;
+	font-size: 15px;
+	text-transform: none;
+	font-weight: bold;
+	color: #424242;
+	margin: 10px 0;
+	text-align: center;
+	list-style: none;
+}
+.rootmenu > .rootmenu-list .halfmenu.dropdowntitle .title a {
+	color: #000;
+	font-size: 20px;
+	font-weight: 600;
+}
+.rootmenu > .rootmenu-list .halfmenu.dropdowntitle .rootmegamenu_block {
+	border-right: 1px solid #ececec;
+	padding:10px 30px 0 20px;
+}
+.rootmenu > .rootmenu-list .halfmenu.dropdowntitle ul > li > a {
+	padding: 5px 25px 5px 25px;
+}
+.rootmenu > .rootmenu-list .halfmenu.dropdowntitle ul > li > a:hover {
+	color: #424242;
+	background: #f3f3f3;
+	text-decoration: none;
+}
+.rootmenu > .rootmenu-list .halfmenu.dropdowntitle ul .halfwidth-popup-sub-sub {
+	background: #fff none repeat scroll 0 0;
+	top: 28px;
+}
+/*END dropdowntitle menu*/
+
+
+
+
+
+
+
+

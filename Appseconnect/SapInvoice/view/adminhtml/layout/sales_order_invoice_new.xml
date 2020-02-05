@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+        <referenceBlock name="order_info">
+            <block class="Appseconnect\SapInvoice\Block\Adminhtml\SapData" name="custom.blockforinvoice" as="custom.blockforinvoice" template="Appseconnect_SapInvoice::sapItemsInvoice Create.phtml" />
+        </referenceBlock>
+
+        <!--<referenceContainer name="content">-->
+            <!--<block class="Magento\Sales\Block\Adminhtml\Order\Invoice\Create" name="sales_invoice_create">-->
+                <!--<block class="Magento\Sales\Block\Adminhtml\Order\Invoice\Create\Form" name="form" template="Magento_Sales::order/invoice/create/form.phtml">-->
+                    <!--<block class="Magento\Sales\Block\Adminhtml\Order\View\Info" name="order_info" template="Magento_Sales::order/view/info.phtml">-->
+                        <!--<container name="extra_customer_info"/>-->
+                    <!--</block>-->
+                 <!---->
+                <!--</block>-->
+            <!--</block>-->
+        <!--</referenceContainer>-->
+    <!--</body>-->
+</page>

@@ -1,0 +1,1393 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Create account form template
+ *
+ * @var $block \Magento\Customer\Block\Form\Register
+ */
+?>
+<?php echo $block->getChildHtml('form_fields_before')?>
+<?php /* Extensions placeholder */ ?>
+<?php echo $block->getChildHtml('customer.form.register.extra')?>
+<?php $helper = $this->helper('MageArray\Wholesale\Helper\Data')?>
+<form class="form create account form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+
+	<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Sign-in Information') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field">
+            <label for="email_address" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input type="email" required name="email" id="email_address" value="<?php echo $block->escapeHtml($block->getFormData()->getEmail()) ?>" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field password required" data-mage-init='{"passwordStrengthIndicator": {}}'>
+            <label for="password" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
+            <div class="control">
+                <input type="password" name="password" id="password" placeholder="Enter Password"
+                       title="<?php /* @escapeNotVerified */ echo __('Password') ?>"
+                       class="input-text"
+                       data-password-min-length="<?php echo $block->escapeHtml($block->getMinimumPasswordLength()) ?>"
+                       data-password-min-character-sets="<?php echo $block->escapeHtml($block->getRequiredCharacterClassesNumber()) ?>"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+              <!--  <div id="password-strength-meter-container" data-role="password-strength-meter" >
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?php /* @escapeNotVerified */ echo __('Password Strength'); ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label" >
+                            <?php /* @escapeNotVerified */ echo __('No Password'); ?>
+                        </span>
+                    </div>
+                </div>-->
+            </div>
+			</div>
+        </div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+        <div class="field confirmation required">
+            <label for="password-confirmation" class="label"><span><?php /* @escapeNotVerified */ echo __('Confirm Password') ?></span></label>
+            <div class="control">
+                <input type="password" name="password_confirmation" title="<?php /* @escapeNotVerified */ echo __('Confirm Password') ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+            </div>
+        </div>
+		</div>
+		</fieldset>
+    <fieldset class="fieldset create info">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Company Information') ?></span></legend><br>
+        <input type="hidden" name="success_url" value="<?php /* @escapeNotVerified */ echo $block->getSuccessUrl() ?>">
+        <input type="hidden" name="error_url" value="<?php /* @escapeNotVerified */ echo $block->getErrorUrl() ?>">
+        <input type="hidden" name="storeweb" value="1">
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+         <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+        
+		<div class="field company">
+                <label for="company" class="label"><span><?php /* @escapeNotVerified */ echo __('Company Name') ?></span></label>
+                <div class="control">
+                    <input type="text" name="company" id="company" value="<?php echo $block->escapeHtml($block->getFormData()->getCompany()) ?>" 
+					title="<?php /* @escapeNotVerified */ echo __('Company') ?>" 
+					class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('company') ?>">
+                </div>
+            </div>
+		
+			<div class="field dba_any required">
+            <label for="dba_any" class="label"><span><?php /* @escapeNotVerified */ echo __('DBA (If Any)') ?></span></label>
+            <div class="control">
+                <input type="text" name="dba_any" id="dba_any" 
+				title="<?php /* @escapeNotVerified */ echo __('DBA (If Any)') ?>" 
+				class="input-text" data-validate="" autocomplete="off"><!--data-validate='{"required":true}' data-msg-required="Please select size."-->
+            </div>
+        </div>
+		
+		<!--<div class="field" style="margin-top: 10px;">
+                <label for="corporation" class="label"><span><?php /* @escapeNotVerified */ echo __('Corporation/ Proprietorship') ?></span></label>
+                 <div class="control"> 
+				<input type="checkbox" name="corporation" id="corporation" class="corporation" value="0" />	Corporation
+				<input type="checkbox" name="proprietorship" id="proprietorship" class="corporation" value="0" />Proprietorship
+				</div>
+            </div>--->
+		
+			<div class="field">
+                <label for="customer_type" class="label"><span><?php /* @escapeNotVerified */ echo __('Corporation Or Proprietorship') ?></span></label>
+                 <div class="control"> 
+				<select id="customer_type">
+				<option value="0">---Select--</option>
+				  <option value="0">Corporation</option>
+				  <option value="0">Proprietorship</option>
+				</select>
+				</div>
+            </div>
+			
+			<div class="field admin_email">
+            <label for="admin_email" class="label"><span><?php /* @escapeNotVerified */ echo __('Admin Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="admin_email" id="admin_email" value="<?php echo $block->escapeHtml($block->getFormData()->getAdminEmail()) ?>" title="<?php /* @escapeNotVerified */ echo __('Admin Email)') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+		<div class="field sales_email">
+            <label for="sales_email" class="label"><span><?php /* @escapeNotVerified */ echo __('Sales Email') ?></span></label>
+            <div class="control">
+                <input type="text" required name="sales_email" id="sales_email" value="<?php echo $block->escapeHtml($block->getFormData()->getSalesEmail()) ?>" title="<?php /* @escapeNotVerified */ echo __('Sales Email)') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+            <div class="field telephone">
+                <label for="telephone" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+                <div class="control">
+                    <input type="text" name="telephone" id="telephone" 
+					value="<?php echo $block->escapeHtml($block->getFormData()->getTelephone()) ?>" 
+					title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" 
+					class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('telephone') ?>">
+                </div>
+            </div>
+
+            <?php $_streetValidationClass = $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('street'); ?>
+
+            <div class="field street">
+                <label for="street_1" class="label"><span><?php /* @escapeNotVerified */ echo __('Street Address') ?></span></label>
+                <div class="control">
+                    <input type="text" name="street[]" value="<?php echo $block->escapeHtml($block->getFormData()->getStreet(0)) ?>" title="<?php /* @escapeNotVerified */ echo __('Street Address') ?>" id="street_1" class="input-text <?php /* @escapeNotVerified */ echo $_streetValidationClass ?>">
+                    <div class="nested">
+                        <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                        <?php for ($_i = 2, $_n = $this->helper('Magento\Customer\Helper\Address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                            <div class="field additional">
+                                <label class="label" for="street_<?php /* @escapeNotVerified */ echo $_i ?>">
+                                    <span><?php /* @escapeNotVerified */ echo __('Address') ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" name="street[]" value="<?php echo $block->escapeHtml($block->getFormData()->getStreetLine($_i - 1)) ?>" title="<?php /* @escapeNotVerified */ echo __('Street Address %1', $_i) ?>" id="street_<?php /* @escapeNotVerified */ echo $_i ?>" class="input-text <?php /* @escapeNotVerified */ echo $_streetValidationClass ?>">
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field required">
+                <label for="city" class="label"><span><?php /* @escapeNotVerified */ echo __('City') ?></span></label>
+                <div class="control">
+                    <input type="text" name="city" value="<?php echo $block->escapeHtml($block->getFormData()->getCity()) ?>" title="<?php /* @escapeNotVerified */ echo __('City') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('city') ?>" id="city">
+                </div>
+            </div>
+		
+            <div class="field region">
+                <label for="region_id" class="label"><span><?php /* @escapeNotVerified */ echo __('State/Province') ?></span></label>
+                <div class="control">
+                    <select id="region_id" name="region_id" title="<?php /* @escapeNotVerified */ echo __('State/Province') ?>" class="validate-select" style="display:none;">
+                        <option value=""><?php /* @escapeNotVerified */ echo __('Please select a region, state or province.') ?></option>
+                    </select>
+                    <input type="text" id="region" name="region" value="<?php echo $block->escapeHtml($block->getRegion()) ?>" title="<?php /* @escapeNotVerified */ echo __('State/Province') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region') ?>" style="display:none;">
+                </div>
+            </div>
+
+            <div class="field zip">
+                <label for="zip" class="label"><span><?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?></span></label>
+                <div class="control">
+                    <input type="text" name="postcode" value="<?php echo $block->escapeHtml($block->getFormData()->getPostcode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?>" id="zip" class="input-text validate-zip-international <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>">
+                </div>
+            </div>
+			
+			<div class="field fax">
+            <label for="fax" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="fax" id="fax" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="{'validate-fax':true}">
+            </div>
+            </div>
+			
+            <div class="field country">
+                <label for="country" class="label"><span><?php /* @escapeNotVerified */ echo __('Country') ?></span></label>
+                <div class="control">
+                    <?php echo $block->getCountryHtmlSelect() ?>
+                </div>
+            </div>
+            <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
+            <?php if ($addressAttributes): ?>
+                <?php $addressAttributes->setEntityType('customer_address'); ?>
+                <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]');?>
+                <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
+                <?php echo $addressAttributes->setShowContainer(false)->toHtml()?>
+            <?php endif;?>
+        <?php echo $block->getChildHtml('form_additional_info'); ?>
+        <?php if ($block->isNewsletterEnabled()): ?>
+           
+            <?php /* Extensions placeholder */ ?>
+            <?php echo $block->getChildHtml('customer.form.register.newsletter')?>
+        <?php endif ?>
+
+        <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <?php echo $_dob->setDate($block->getFormData()->getDob())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_taxvat = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Taxvat') ?>
+        <?php if ($helper->getShowTaxvat()): ?>
+            <?php echo $_taxvat->setTaxvat($block->getFormData()->getTaxvat())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_gender = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Gender') ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <?php echo $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
+        <?php endif ?>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field in_business">
+        <label for="in_business" class="label"><span><?php /* @escapeNotVerified */ echo __('In Business (YRS)') ?></span></label>
+        <div class="control">
+        <input type="text" name="in_business" id="in_business" value="<?php echo $block->escapeHtml($block->getFormData()->getInBusiness()) ?>" title="<?php /* @escapeNotVerified */ echo __('In Business (YRS)') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field present_location">
+        <label for="present_location" class="label"><span><?php /* @escapeNotVerified */ echo __('At Present Location (YRS)') ?></span></label>
+        <div class="control">
+        <input type="text" name="present_location" id="present_location" value="<?php echo $block->escapeHtml($block->getFormData()->getPresentLocation()) ?>" title="<?php /* @escapeNotVerified */ echo __('At Present Location (YRS)') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<!---<div class="field" style="margin-top: 10px;">
+                <label for="rented" class="label"><span><?php /* @escapeNotVerified */ echo __('Location is Rented / Owned') ?></span></label>
+				 <div class="control"> 
+				<input type="checkbox" name="rented" id="rented" class="rented" value="0" />	Rented
+				<input type="checkbox" name="owned" id="owned" class="rented" value="0" />Owned
+				</div>
+            </div>--->
+				<div class="field ren_own">
+                <label for="ren_own" class="label"><span><?php /* @escapeNotVerified */ echo __('Location is Rented / Owned') ?></span></label>
+                 <div class="control"> 
+				<select id="ren_own" name="ren_own">
+				<option value="0">---Select--</option>
+				  <option value="rented">Rented</option>
+				  <option value="owned">Owned</option>
+				</select>
+				</div>
+            </div>
+		<div class="field length_lease">
+        <label for="length_lease" class="label"><span><?php /* @escapeNotVerified */ echo __('Length Of Lease (YRS)') ?></span></label>
+        <div class="control">
+        <input type="text" name="length_lease" id="length_lease" value="<?php echo $block->escapeHtml($block->getFormData()->getLengthLease()) ?>" title="<?php /* @escapeNotVerified */ echo __('Length Of Lease (YRS)') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field lease_expiry">
+        <label for="lease_expiry" class="label"><span><?php /* @escapeNotVerified */ echo __('Lease Expiry') ?></span></label>
+        <div class="control">
+        <input type="text" name="lease_expiry" id="lease_expiry" style="height: 27px;width: 100%;border-radius:6px;box-shadow: 1px 1px 3px 1px #179BD7;" value="<?php echo $block->escapeHtml($block->getFormData()->getLeaseExpiry()) ?>" title="<?php /* @escapeNotVerified */ echo __('Lease Expiry') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field landlord_name">
+        <label for="landlord_name" class="label"><span><?php /* @escapeNotVerified */ echo __('Landlord Name') ?></span></label>
+        <div class="control">
+        <input type="text" name="landlord_name" id="landlord_name" value="<?php echo $block->escapeHtml($block->getFormData()->getLandlordName()) ?>" title="<?php /* @escapeNotVerified */ echo __('Landlord Name') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field phonelist">
+        <label for="phonelist" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phonelist" id="phonelist" value="<?php echo $block->escapeHtml($block->getFormData()->getLandlordName()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33%;border-radius: 6px;background: white;color: #000;font-size: 16px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		 <div class="field choice newsletter">
+                <input type="checkbox" name="is_subscribed" title="<?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if ($block->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox">
+                <label for="is_subscribed" class="label"><span><?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?></span></label>
+            </div>
+			</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 65%;border-radius: 6px;background: white;color: #000;font-size: 16px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field">
+		<label for="yes_no">
+        <input type="checkbox" id="yes_no" onclick="ShowHideDiv(this)" />
+        DO YOU WISH TO BE AN OES REGISTERED REMITTER REMITTING OES FEES ON OUR BEHALF
+    </label>
+    <div id="epra" style="display: none">
+        OES Number : 
+        <input type="text" id="epra" />
+    </div>
+			<!--<div class="field" style="margin-top: 10px;">
+                <label for="yes" class="label"><span><?php /* @escapeNotVerified */ echo __('DO YOU WISH TO BE AN OES REGISTERED REMITTER REMITTING OES FEES ON OUR BEHALF : ') ?></span></label>
+               
+				<input type="checkbox" name="yes" id="yes" class="yes" value="0" />	Yes
+				<input type="checkbox" name="no" id="no" class="yes" value="0" />No
+		
+            </div>-->
+			<!--<div class="field yes_no">
+                <label for="yes_no" class="label"><span><?php /* @escapeNotVerified */ echo __('DO YOU WISH TO BE AN OES REGISTERED REMITTER REMITTING OES FEES ON OUR BEHALF') ?></span></label>
+                 <div class="control"> 
+				<select id="types" name="types">
+				<option value="choose">---Select--</option>
+				  <option value="0">Yes</option>
+				  <option value="1">No</option>
+				</select>
+				</div>
+            </div>
+			<br>
+			<input type="text" id="epra" placeholder ="Please Enter EPRA Registration No." style="display: none;" value="<?php echo $block->escapeHtml($block->getFormData()->getLandlordName()) ?>" title="<?php /* @escapeNotVerified */ echo __('OES No') ?>" class="input-text" data-validate="">
+			-->
+		</div>
+		</div>
+    </fieldset>
+    <?php if ($helper->getShowAddress()): ?>
+    <?php //if ($block->getShowAddressFields()): ?>
+       <!--- <fieldset class="fieldset address">
+            <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Address Information') ?></span></legend><br>
+            <input type="hidden" name="create_address" value="1" />
+            <div class="field company">
+                <label for="company" class="label"><span><?php /* @escapeNotVerified */ echo __('Company') ?></span></label>
+                <div class="control">
+                    <input type="text" name="company" id="company" value="<?php echo $block->escapeHtml($block->getFormData()->getCompany()) ?>" title="<?php /* @escapeNotVerified */ echo __('Company') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('company') ?>">
+                </div>
+            </div>
+			
+			<div class="field dba_any">
+            <label for="dba_any" class="label"><span><?php /* @escapeNotVerified */ echo __('DBA (If Any)') ?></span></label>
+            <div class="control">
+                <input type="text" name="dba_any" id="dba_any" value="<?php echo $block->escapeHtml($block->getFormData()->getDba()) ?>" title="<?php /* @escapeNotVerified */ echo __('DBA (If Any)') ?>" class="input-text" data-validate="">
+            </div>
+        </div>
+		
+		<div class="field">
+                <label for="corporation" class="label"><span><?php /* @escapeNotVerified */ echo __('Corporation/ Proprietorship') ?></span></label>
+                <div class="control"> 
+				<input type="checkbox" name="corporation" id="corporation" class="corporation" value="0" />	Corporation
+				<input type="checkbox" name="proprietorship" id="proprietorship" class="corporation" value="0" />Proprietorship
+				</div>
+            </div>
+			
+			<div class="field admin_email">
+            <label for="admin_email" class="label"><span><?php /* @escapeNotVerified */ echo __('Admin Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="admin_email" id="admin_email" value="<?php echo $block->escapeHtml($block->getFormData()->getAdminEmail()) ?>" title="<?php /* @escapeNotVerified */ echo __('Admin Email)') ?>" class="input-text" data-validate="">
+            </div>
+        </div>
+		
+		<div class="field sales_email">
+            <label for="sales_email" class="label"><span><?php /* @escapeNotVerified */ echo __('Sales Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="sales_email" id="sales_email" value="<?php echo $block->escapeHtml($block->getFormData()->getSalesEmail()) ?>" title="<?php /* @escapeNotVerified */ echo __('Sales Email)') ?>" class="input-text" data-validate="">
+            </div>
+        </div>
+		
+            <div class="field telephone">
+                <label for="telephone" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+                <div class="control">
+                    <input type="text" name="telephone" id="telephone" value="<?php echo $block->escapeHtml($block->getFormData()->getTelephone()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('telephone') ?>">
+                </div>
+            </div>
+
+            <?php $_streetValidationClass = $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('street'); ?>
+
+            <div class="field street">
+                <label for="street_1" class="label"><span><?php /* @escapeNotVerified */ echo __('Street Address') ?></span></label>
+                <div class="control">
+                    <input type="text" name="street[]" value="<?php echo $block->escapeHtml($block->getFormData()->getStreet(0)) ?>" title="<?php /* @escapeNotVerified */ echo __('Street Address') ?>" id="street_1" class="input-text <?php /* @escapeNotVerified */ echo $_streetValidationClass ?>">
+                    <div class="nested">
+                        <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                        <?php for ($_i = 2, $_n = $this->helper('Magento\Customer\Helper\Address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                            <div class="field additional">
+                                <label class="label" for="street_<?php /* @escapeNotVerified */ echo $_i ?>">
+                                    <span><?php /* @escapeNotVerified */ echo __('Address') ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" name="street[]" value="<?php echo $block->escapeHtml($block->getFormData()->getStreetLine($_i - 1)) ?>" title="<?php /* @escapeNotVerified */ echo __('Street Address %1', $_i) ?>" id="street_<?php /* @escapeNotVerified */ echo $_i ?>" class="input-text <?php /* @escapeNotVerified */ echo $_streetValidationClass ?>">
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field required">
+                <label for="city" class="label"><span><?php /* @escapeNotVerified */ echo __('City') ?></span></label>
+                <div class="control">
+                    <input type="text" name="city" value="<?php echo $block->escapeHtml($block->getFormData()->getCity()) ?>" title="<?php /* @escapeNotVerified */ echo __('City') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('city') ?>" id="city">
+                </div>
+            </div>
+
+            <div class="field region">
+                <label for="region_id" class="label"><span><?php /* @escapeNotVerified */ echo __('State/Province') ?></span></label>
+                <div class="control">
+                    <select id="region_id" name="region_id" title="<?php /* @escapeNotVerified */ echo __('State/Province') ?>" class="validate-select" style="display:none;">
+                        <option value=""><?php /* @escapeNotVerified */ echo __('Please select a region, state or province.') ?></option>
+                    </select>
+                    <input type="text" id="region" name="region" value="<?php echo $block->escapeHtml($block->getRegion()) ?>" title="<?php /* @escapeNotVerified */ echo __('State/Province') ?>" class="input-text <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region') ?>" style="display:none;">
+                </div>
+            </div>
+
+            <div class="field zip">
+                <label for="zip" class="label"><span><?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?></span></label>
+                <div class="control">
+                    <input type="text" name="postcode" value="<?php echo $block->escapeHtml($block->getFormData()->getPostcode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Zip/Postal Code') ?>" id="zip" class="input-text validate-zip-international <?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>">
+                </div>
+            </div>
+			
+			<div class="field fax">
+            <label for="fax" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="fax" id="fax" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+
+			
+            <div class="field country">
+                <label for="country" class="label"><span><?php /* @escapeNotVerified */ echo __('Country') ?></span></label>
+                <div class="control">
+                    <?php echo $block->getCountryHtmlSelect() ?>
+                </div>
+            </div>
+            <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
+            <?php if ($addressAttributes): ?>
+                <?php $addressAttributes->setEntityType('customer_address'); ?>
+                <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]');?>
+                <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
+                <?php echo $addressAttributes->setShowContainer(false)->toHtml()?>
+            <?php endif;?>
+            <input type="hidden" name="default_billing" value="1">
+            <input type="hidden" name="default_shipping" value="1">
+        </fieldset>
+		---->
+		<!----<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('(2) If More Than 2 Locations') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;padding: 25px;border-radius: 6px;background: #179BD7;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field in_business">
+        <label for="in_business" class="label"><span><?php /* @escapeNotVerified */ echo __('In Business (YRS)') ?></span></label>
+        <div class="control">
+        <input type="text" name="in_business" id="in_business" value="<?php echo $block->escapeHtml($block->getFormData()->getInBusiness()) ?>" title="<?php /* @escapeNotVerified */ echo __('In Business (YRS)') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field present_location">
+        <label for="present_location" class="label"><span><?php /* @escapeNotVerified */ echo __('At Present Location (YRS)') ?></span></label>
+        <div class="control">
+        <input type="text" name="present_location" id="present_location" value="<?php echo $block->escapeHtml($block->getFormData()->getPresentLocation()) ?>" title="<?php /* @escapeNotVerified */ echo __('At Present Location (YRS)') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field">
+                <label for="rented" class="label"><span><?php /* @escapeNotVerified */ echo __('Location is Rented / Owned') ?></span></label>
+                <div class="control"> 
+				<input type="checkbox" name="rented" id="rented" class="rented" value="0" />	Rented<br>
+				<input type="checkbox" name="owned" id="owned" class="rented" value="0" />Owned
+				</div>
+            </div>
+		<div class="field length_lease">
+        <label for="length_lease" class="label"><span><?php /* @escapeNotVerified */ echo __('Length Of Lease (YRS)') ?></span></label>
+        <div class="control">
+        <input type="text" name="length_lease" id="length_lease" value="<?php echo $block->escapeHtml($block->getFormData()->getLengthLease()) ?>" title="<?php /* @escapeNotVerified */ echo __('Length Of Lease (YRS)') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+	<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 50%;padding: 25px;border-radius: 6px;background: #179BD7;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field lease_expiry">
+        <label for="lease_expiry" class="label"><span><?php /* @escapeNotVerified */ echo __('Lease Expiry') ?></span></label>
+        <div class="control">
+        <input type="text" name="lease_expiry" id="lease_expiry" value="<?php echo $block->escapeHtml($block->getFormData()->getLeaseExpiry()) ?>" title="<?php /* @escapeNotVerified */ echo __('Lease Expiry') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field landlord_name">
+        <label for="landlord_name" class="label"><span><?php /* @escapeNotVerified */ echo __('Landlord Name') ?></span></label>
+        <div class="control">
+        <input type="text" name="landlord_name" id="landlord_name" value="<?php echo $block->escapeHtml($block->getFormData()->getLandlordName()) ?>" title="<?php /* @escapeNotVerified */ echo __('Landlord Name') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field phonelist">
+        <label for="phonelist" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phonelist" id="phonelist" value="<?php echo $block->escapeHtml($block->getFormData()->getLandlordName()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+			<div class="field">
+                <label for="yes" class="label"><span><?php /* @escapeNotVerified */ echo __('DO YOU WISH TO BE AN OES REGISTERED REMITTER REMITTING OES FEES ON OUR BEHALF') ?></span></label>
+                <div class="control"> 
+				<input type="checkbox" name="yes" id="yes" class="yes" value="0" />	Yes
+				<input type="checkbox" name="no" id="no" class="yes" value="0" />No
+				</div>
+            </div>
+			</div>
+		</fieldset>--->
+		
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Proprietors, Partners and Officers') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field name_one required">
+        <label for="name_one" class="label"><span><?php /* @escapeNotVerified */ echo __('Name One') ?></span></label>
+        <div class="control">
+        <input type="text" name="name_one" id="name_one" value="<?php echo $block->escapeHtml($block->getFormData()->getNameOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Name One') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		
+		<div class="field position">
+        <label for="position" class="label"><span><?php /* @escapeNotVerified */ echo __('Position') ?></span></label>
+        <div class="control">
+        <input type="text" name="position" id="position" value="<?php echo $block->escapeHtml($block->getFormData()->getPosition()) ?>" title="<?php /* @escapeNotVerified */ echo __('Position') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		
+		<div class="field address_ph">
+        <label for="address_ph" class="label"><span><?php /* @escapeNotVerified */ echo __('Address / PH') ?></span></label>
+        <div class="control">
+        <input type="text" name="address_ph" id="address_ph" value="<?php echo $block->escapeHtml($block->getFormData()->getAddressPh()) ?>" title="<?php /* @escapeNotVerified */ echo __('Address / PH') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field name_two">
+        <label for="name_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Name Two') ?></span></label>
+        <div class="control">
+        <input type="text" name="name_two" id="name_two" value="<?php echo $block->escapeHtml($block->getFormData()->getNameTwo()) ?>" title="<?php /* @escapeNotVerified */ echo __('Name Two') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		
+		<div class="field position_two">
+        <label for="position_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Position') ?></span></label>
+        <div class="control">
+        <input type="text" name="position_two" id="position_two" value="<?php echo $block->escapeHtml($block->getFormData()->getPosition()) ?>" title="<?php /* @escapeNotVerified */ echo __('Position') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		
+		<div class="field address_ph_two">
+        <label for="address_ph_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Address / PH') ?></span></label>
+        <div class="control">
+        <input type="text" name="address_ph_two" id="address_ph_two" value="<?php echo $block->escapeHtml($block->getFormData()->getAddressPh()) ?>" title="<?php /* @escapeNotVerified */ echo __('Address / PH') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>	
+		</fieldset>
+		
+          <!---test---->
+       <div class="field">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Type Of Credit Requested') ?></span></legend><br>
+                <label class="label"><span><?php /* @escapeNotVerified */ ?></span></label>
+				<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+                
+				<div class="control" style="margin:10px"> 
+				<select id="myselect" name="mySelect">
+					<option value="choose">---Select--</option>
+				  <option value="1">Credit Card</option>
+				  <option value="2">Open Terms</option>
+				  <option value="3">Mega / NBA</option>
+				  <option value="4">Cantrex</option>
+				</select>
+				</div>
+			 </div>
+			</fieldset>
+			</div>
+			<div id ="form_credit_id" style="display:none">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Credit Card') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;padding: 8px;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field">
+                <label for="visa" class="label"><span><?php /* @escapeNotVerified */ echo __('Visa / Mastercard') ?></span></label>
+                <div class="control"> 
+				<input type="checkbox" name="visa" id="visa" class="visa" value="0" style="margin-left:25px;" />	Visa
+				<input type="checkbox" name="mastercard" id="mastercard" class="visa" value="0" />Mastercard
+				</div>
+            </div>
+		
+		<div class="field credit_card">
+        <label for="credit_card" class="label"><span><?php /* @escapeNotVerified */ echo __('Credit_Card') ?></span></label>
+        <div class="control">
+        <input type="text" name="credit_card" id="credit_card" style="border: 2px solid gainsboro;" value="<?php echo $block->escapeHtml($block->getFormData()->getCreditCard()) ?>" title="<?php /* @escapeNotVerified */ echo __('Credit_Card') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field expiry_date">
+        <label for="expiry_date" class="label"><span><?php /* @escapeNotVerified */ echo __('Expiry Date') ?></span></label>
+        <div class="control">
+        <input type="text" name="expiry_date" id="expiry_date" placeholder="MM/YY" style="height: 27px;width:100%;border-radius:  6px;" value="<?php echo $block->escapeHtml($block->getFormData()->getExpiryDate()) ?>" title="<?php /* @escapeNotVerified */ echo __('Expiry Date') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field cardholder">
+        <label for="cardholder" class="label"><span><?php /* @escapeNotVerified */ echo __('Cardholder') ?></span></label>
+        <div class="control">
+        <input type="text" name="cardholder" id="cardholder" value="<?php echo $block->escapeHtml($block->getFormData()->getCardholder()) ?>" title="<?php /* @escapeNotVerified */ echo __('Cardholder') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<!---<div class="field signature">
+        <label for="signature" class="label"><span><?php /* @escapeNotVerified */ echo __('Signature') ?></span></label>
+        <div class="control">
+        <input type="text" name="signature" id="signature" value="<?php echo $block->escapeHtml($block->getFormData()->getSignature()) ?>" title="<?php /* @escapeNotVerified */ echo __('Signature') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field date">
+        <label for="date" class="label"><span><?php /* @escapeNotVerified */ echo __('Date') ?></span></label>
+        <div class="control">
+        <input type="date" name="date" id="date" style="height: 27px;width: 100%;border-radius:6px;box-shadow: 1px 1px 3px 1px #179BD7;" value="<?php echo $block->escapeHtml($block->getFormData()->getDate()) ?>" title="<?php /* @escapeNotVerified */ echo __('Date') ?>" class="input-text" data-validate="">
+        </div>
+        </div>--->	
+		</fieldset>
+		</div>
+		<div id="form_cash_id" style="display:none">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Open Terms') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 88%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field requested_limit">
+        <label for="requested_limit" class="label"><span><?php /* @escapeNotVerified */ echo __('Requested Limit') ?></span></label>
+        <div class="control">
+        <input type="text" name="requested_limit" id="requested_limit" value="<?php echo $block->escapeHtml($block->getFormData()->getRequestedLimit()) ?>" title="<?php /* @escapeNotVerified */ echo __('Requested Limit') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		 <div style="/* float:right; *//* width: 50%; *//* margin-left: 50px; *//* position: relative; */">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Trade References') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;padding: 10px;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field references_one">
+        <label for="references_one" class="label"><span><?php /* @escapeNotVerified */ echo __('Reference I') ?></span></label>
+        <div class="control">
+        <input type="text" name="references_one" id="references_one" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Reference I') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field phone_references_one">
+        <label for="phone_references_one" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phone_references_one" id="phone_references_one" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field tradefaxone">
+            <label for="tradefaxone" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="tradefaxone" id="tradefaxone" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+		<div class="field phone_email_one">
+            <label for="phone_email_one" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="phone_email_one" id="phone_email_one" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>	
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 33.33%;padding:10px;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field references_two">
+        <label for="references_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Reference II') ?></span></label>
+        <div class="control">
+        <input type="text" name="references_two" id="references_two" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesTwo()) ?>" title="<?php /* @escapeNotVerified */ echo __('Reference II') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		
+		<div class="field phone_references_two">
+        <label for="phone_references_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phone_references_two" id="phone_references_two" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		
+		<div class="field tradefaxtwo">
+            <label for="tradefaxtwo" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="tradefaxtwo" id="tradefaxtwo" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+			
+		<div class="field phone_email_two">
+            <label for="phone_email_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="phone_email_two" id="phone_email_two" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>	
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 33.33%;padding: 10px;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		
+		<div class="field references_three">
+        <label for="references_three" class="label"><span><?php /* @escapeNotVerified */ echo __('Reference III') ?></span></label>
+        <div class="control">
+        <input type="text" name="references_three" id="references_three" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesThree()) ?>" title="<?php /* @escapeNotVerified */ echo __('Reference III') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field phone_references_three">
+        <label for="phone_references_three" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phone_references_three" id="phone_references_three" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field tradefaxthree">
+            <label for="tradefaxthree" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="tradefaxthree" id="tradefaxthree" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+		<div class="field phone_email_three">
+            <label for="phone_email_three" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="phone_email_three" id="phone_email_three" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+			</div>
+		</fieldset>
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Bank Information') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 100%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field bank_name">
+        <label for="bank_name" class="label"><span><?php /* @escapeNotVerified */ echo __('Bank Name') ?></span></label>
+        <div class="control">
+        <input type="text" name="bank_name" id="bank_name" value="<?php echo $block->escapeHtml($block->getFormData()->getBankName()) ?>" title="<?php /* @escapeNotVerified */ echo __('Bank Name') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 50%;border-radius: 6px;background:white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field address">
+        <label for="address" class="label"><span><?php /* @escapeNotVerified */ echo __('Address') ?></span></label>
+        <div class="control">
+        <input type="text" name="address" id="address" value="<?php echo $block->escapeHtml($block->getFormData()->getAddress()) ?>" title="<?php /* @escapeNotVerified */ echo __('Address') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field phoneinfo">
+        <label for="phoneinfo" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phoneinfo" id="phoneinfo" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 50%;border-radius: 6px;background:white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field faxinfo">
+            <label for="faxinfo" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="faxinfo" id="faxinfo" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+		<div class="field acct_number">
+        <label for="acct_number_id" class="label"><span><?php /* @escapeNotVerified */ echo __('Acct Number') ?></span></label>
+        <div class="control">
+        <input type="text" name="acct_number" id="acct_number_id" value="<?php echo $block->escapeHtml($block->getFormData()->getAcctNumber()) ?>" title="<?php /* @escapeNotVerified */ echo __('Acct Number') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		</fieldset>
+	
+		</div>
+		</fieldset>
+		</div>
+		<!----mega--->
+		<div id="form_nba_id" style="display:none">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Mega / NBA') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field account_card">
+        <label for="account_card" class="label"><span><?php /* @escapeNotVerified */ echo __('Account #') ?></span></label>
+        <div class="control">
+        <input type="text" name="account_card" id="account_card" value="<?php echo $block->escapeHtml($block->getFormData()->getAcctNumber()) ?>" title="<?php /* @escapeNotVerified */ echo __('Account #') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		</fieldset>
+		</div>
+		<!--end-->
+			<!----mega--->
+		<div id="form_cantrex_id" style="display:none">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Cantrex') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field account_card">
+        <label for="account_card" class="label"><span><?php /* @escapeNotVerified */ echo __('Account #') ?></span></label>
+        <div class="control">
+        <input type="text" name="account_card" id="account_card" value="<?php echo $block->escapeHtml($block->getFormData()->getAcctNumber()) ?>" title="<?php /* @escapeNotVerified */ echo __('Account #') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		</fieldset>
+		</div>
+<!--end--->		  
+		<!---<div class="field">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Type Of Credit Requested') ?></span></legend><br>
+                <label class="label"><span><?php /* @escapeNotVerified */ ?></span></label>
+				<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+                <div class="control"> 
+				<input type="radio" name="credit" id="credit"   class="credit" value="Checkbox1" />Credit Card
+				<input type="radio" name="credit" id="bankinfo" class="credit" value="Checkbox2" />Open Terms
+				<input type="radio" name="credit" id="mega"     class="credit" value="Checkbox3" />Mega / NBA
+				<input type="radio" name="credit" id="cantrex"  class="credit" value="Checkbox4" />Cantrex
+				</div>
+            </div>
+			</fieldset>
+			</div>
+		<div id ="form_credit" style="display:none">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Credit Card') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;padding: 8px;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field">
+                <label for="visa" class="label"><span><?php /* @escapeNotVerified */ echo __('Visa / Mastercard') ?></span></label>
+                <div class="control"> 
+				<input type="checkbox" name="visa" id="visa" class="visa" value="0" style="margin-left:25px;" />	Visa
+				<input type="checkbox" name="mastercard" id="mastercard" class="visa" value="0" />Mastercard
+				</div>
+            </div>
+		
+		<div class="field credit_card">
+        <label for="credit_card" class="label"><span><?php /* @escapeNotVerified */ echo __('Credit_Card') ?></span></label>
+        <div class="control">
+        <input type="text" name="credit_card" id="credit_card" style="border: 2px solid gainsboro;" value="<?php echo $block->escapeHtml($block->getFormData()->getCreditCard()) ?>" title="<?php /* @escapeNotVerified */ echo __('Credit_Card') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field expiry_date">
+        <label for="expiry_date" class="label"><span><?php /* @escapeNotVerified */ echo __('Expiry Date') ?></span></label>
+        <div class="control">
+        <input type="text" name="expiry_date" id="expiry_date" placeholder="MM/YY" style="height: 40px;width:100%;border-radius:  6px;" value="<?php echo $block->escapeHtml($block->getFormData()->getExpiryDate()) ?>" title="<?php /* @escapeNotVerified */ echo __('Expiry Date') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field cardholder">
+        <label for="cardholder" class="label"><span><?php /* @escapeNotVerified */ echo __('Cardholder') ?></span></label>
+        <div class="control">
+        <input type="text" name="cardholder" id="cardholder" value="<?php echo $block->escapeHtml($block->getFormData()->getCardholder()) ?>" title="<?php /* @escapeNotVerified */ echo __('Cardholder') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field signature">
+        <label for="signature" class="label"><span><?php /* @escapeNotVerified */ echo __('Signature') ?></span></label>
+        <div class="control">
+        <input type="text" name="signature" id="signature" value="<?php echo $block->escapeHtml($block->getFormData()->getSignature()) ?>" title="<?php /* @escapeNotVerified */ echo __('Signature') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field date">
+        <label for="date" class="label"><span><?php /* @escapeNotVerified */ echo __('Date') ?></span></label>
+        <div class="control">
+        <input type="date" name="date" id="date" style="height: 40px;width: 100%;border-radius:6px;box-shadow: 1px 1px 3px 1px #179BD7;" value="<?php echo $block->escapeHtml($block->getFormData()->getDate()) ?>" title="<?php /* @escapeNotVerified */ echo __('Date') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		
+		</fieldset>
+		</div>
+		<div id="form_cash" style="display:none">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Open Terms') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 88%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field requested_limit">
+        <label for="requested_limit" class="label"><span><?php /* @escapeNotVerified */ echo __('Requested Limit') ?></span></label>
+        <div class="control">
+        <input type="text" name="requested_limit" id="requested_limit" value="<?php echo $block->escapeHtml($block->getFormData()->getRequestedLimit()) ?>" title="<?php /* @escapeNotVerified */ echo __('Requested Limit') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		 <div style="/* float:right; *//* width: 50%; *//* margin-left: 50px; *//* position: relative; */">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Trade References') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;padding: 10px;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field references_one">
+        <label for="references_one" class="label"><span><?php /* @escapeNotVerified */ echo __('Reference I') ?></span></label>
+        <div class="control">
+        <input type="text" name="references_one" id="references_one" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Reference I') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field phone_references_one">
+        <label for="phone_references_one" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phone_references_one" id="phone_references_one" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field tradefaxone">
+            <label for="tradefaxone" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="tradefaxone" id="tradefaxone" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+		<div class="field phone_email_one">
+            <label for="phone_email_one" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="phone_email_one" id="phone_email_one" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>	
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 33.33%;padding:10px;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field references_two">
+        <label for="references_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Reference II') ?></span></label>
+        <div class="control">
+        <input type="text" name="references_two" id="references_two" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesTwo()) ?>" title="<?php /* @escapeNotVerified */ echo __('Reference II') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		
+		<div class="field phone_references_two">
+        <label for="phone_references_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phone_references_two" id="phone_references_two" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		
+		<div class="field tradefaxtwo">
+            <label for="tradefaxtwo" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="tradefaxtwo" id="tradefaxtwo" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+			
+		<div class="field phone_email_two">
+            <label for="phone_email_two" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="phone_email_two" id="phone_email_two" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>	
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 33.33%;padding: 10px;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		
+		<div class="field references_three">
+        <label for="references_three" class="label"><span><?php /* @escapeNotVerified */ echo __('Reference III') ?></span></label>
+        <div class="control">
+        <input type="text" name="references_three" id="references_three" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesThree()) ?>" title="<?php /* @escapeNotVerified */ echo __('Reference III') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field phone_references_three">
+        <label for="phone_references_three" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phone_references_three" id="phone_references_three" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field tradefaxthree">
+            <label for="tradefaxthree" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="tradefaxthree" id="tradefaxthree" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+		<div class="field phone_email_three">
+            <label for="phone_email_three" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+            <div class="control">
+                <input type="text" name="phone_email_three" id="phone_email_three" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+			</div>
+		</fieldset>
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Bank Information') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 100%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field bank_name">
+        <label for="bank_name" class="label"><span><?php /* @escapeNotVerified */ echo __('Bank Name') ?></span></label>
+        <div class="control">
+        <input type="text" name="bank_name" id="bank_name" value="<?php echo $block->escapeHtml($block->getFormData()->getBankName()) ?>" title="<?php /* @escapeNotVerified */ echo __('Bank Name') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 50%;border-radius: 6px;background:white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field address">
+        <label for="address" class="label"><span><?php /* @escapeNotVerified */ echo __('Address') ?></span></label>
+        <div class="control">
+        <input type="text" name="address" id="address" value="<?php echo $block->escapeHtml($block->getFormData()->getAddress()) ?>" title="<?php /* @escapeNotVerified */ echo __('Address') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		<div class="field phoneinfo">
+        <label for="phoneinfo" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone') ?></span></label>
+        <div class="control">
+        <input type="text" name="phoneinfo" id="phoneinfo" value="<?php echo $block->escapeHtml($block->getFormData()->getReferencesOne()) ?>" title="<?php /* @escapeNotVerified */ echo __('Phone') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float: left;width: 50%;border-radius: 6px;background:white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field faxinfo">
+            <label for="faxinfo" class="label"><span><?php /* @escapeNotVerified */ echo __('Fax') ?></span></label>
+            <div class="control">
+                <input type="text" name="faxinfo" id="faxinfo" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Fax') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+		<div class="field acct_number">
+        <label for="acct_number_id" class="label"><span><?php /* @escapeNotVerified */ echo __('Acct Number') ?></span></label>
+        <div class="control">
+        <input type="text" name="acct_number" id="acct_number_id" value="<?php echo $block->escapeHtml($block->getFormData()->getAcctNumber()) ?>" title="<?php /* @escapeNotVerified */ echo __('Acct Number') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		</fieldset>
+	
+		</div>
+		</fieldset>
+		</div>
+		
+		<div id="form_nba" style="display:none">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Mega / NBA') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field account_card">
+        <label for="account_card" class="label"><span><?php /* @escapeNotVerified */ echo __('Account #') ?></span></label>
+        <div class="control">
+        <input type="text" name="account_card" id="account_card" value="<?php echo $block->escapeHtml($block->getFormData()->getAcctNumber()) ?>" title="<?php /* @escapeNotVerified */ echo __('Account #') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		</fieldset>
+		</div>
+	
+		<div id="form_cantrex" style="display:none">
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Cantrex') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field account_card">
+        <label for="account_card" class="label"><span><?php /* @escapeNotVerified */ echo __('Account #') ?></span></label>
+        <div class="control">
+        <input type="text" name="account_card" id="account_card" value="<?php echo $block->escapeHtml($block->getFormData()->getAcctNumber()) ?>" title="<?php /* @escapeNotVerified */ echo __('Account #') ?>" class="input-text" data-validate="">
+        </div>
+        </div>
+		</div>
+		</fieldset>
+		</div>--->
+		<!--end-->
+		
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Product Lines Requested') ?></span></legend><br>
+		<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 50%;border-radius: 6px;background: white;color: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field product_line">
+        <label for="product_line" class="label"><span><?php /* @escapeNotVerified */ echo __('Specify Product Line') ?></span></label>
+        <div class="control">
+		<div style="float:  left;width:  50%;">
+      <ul style="list-style-type:none;">
+    <li><input type="checkbox" name="acs" value="Audio"> Audio Control</li>
+    <li><input type="checkbox" name="acs" value="Bluestream"> Bluestream</li>
+    <li><input type="checkbox" name="acs" value="Definitive"> Definitive Technology</li>
+    <li><input type="checkbox" name="acs" value="Ecobee"> Ecobee</li>
+	<li><input type="checkbox" name="acs" value="Lutron"> Lutron</li>
+	</ul>
+	</div>
+	<div>
+	<ul style="list-style-type:none;">
+    <li><input type="checkbox" name="acs" value="MantelMount"> MantelMount</li>
+    <li><input type="checkbox" name="acs" value="Nest"> Nest</li>
+	<li><input type="checkbox" name="acs" value="Origin"> Origin Acoustics</li>
+    <li><input type="checkbox" name="acs" value="Savant"> Savant</li>
+    <li><input type="checkbox" name="acs" value="Lutron"> Stealth Acoustics</li>
+</ul>
+</div>
+<p>
+		<input type="button" onclick='selectAll()' value="Select All"/>
+		<input type="button" onclick='UnSelectAll()' value="Unselect All"/>
+	</p>
+<!--	   <input type="text" name="product_line" id="product_line" value="<?php echo $block->escapeHtml($block->getFormData()->getProductLine()) ?>" title="<?php /* @escapeNotVerified */ echo __('Specify Product Line') ?>" class="input-text" data-validate="">
+    -->    </div>
+        </div>
+		</div>
+		</fieldset>
+		
+		<fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Terms And Conditions') ?></span></legend><br>
+		<div style="border-radius: 6px;background: white;color: #000;font-size: 15px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field">
+                <label for="yes" class="label"><span><?php /* @escapeNotVerified */ echo __('<p style="margin:8px;">The above information is supplied for the purpose of obtaining credit and is warranted to be true. I understand and consent to evolution home entertainment corp consumer report containing information relating to this application. I further that should my account fall into arrears, evolution home entertainment corp is entitled to withdraw credit privileges at its own discretion. NSF cheques are subject to a minimum service charge of $25 per occurrence. The applicant hereby acknowledges receiving a copy of the credit application. Completion of this application shall constitute approval for the release of information as provided for by applicable privacy legislation. All payments are due on the date set out on the invoice. Interest shall accrue at 2% per month (24% per annum).</p>
+<p style="margin:8px;">In the event that any collection proceedings are required for outstanding invoices, all collection costs shall be the responsibility of the customer. 
+All goods shall remain the property of evolution home entertainment corp until paid for in full. All shipments will be sent cod, 
+freight collect unless otherwise approved by evolution home entertainment corp.I understand and that all returns are subject to a 25% restocking charge and must accompany an approved return authorization number) 
+supplied by evolution home entertainment corp for corporate accounts, and for good and valuable consideration acknowledged to have been received by him or her, 
+the undersigned hereby guarantees the obligations of the customer with respect to payment of all invoices and balances due to evolution home entertainment corp, 
+from time to time, including all interest and costs which may be chargeable on the account.</p>') ?></span></label>
+                <div class="control"> 
+				<!--<input type="checkbox" name="checkbox" value="check" required />	AGREED-->
+				<input class="checkbox required" type="checkbox" id="check" name="check" value="check" />	I agree to the Terms and Conditions.
+				<!---<input type="checkbox" name="no" id="no_id" class="yes" value="0" />DISAGREED--->
+				</div>
+            </div>
+			<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field print_name">
+            <label for="print_name" class="label"><span><?php /* @escapeNotVerified */ echo __('Name Of Principal Owner') ?></span></label>
+            <div class="control">
+                <input type="text" name="print_name" id="print_name" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Print Name') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+			</div>
+			<!---<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+		<div class="field signature">
+            <label for="signature" class="label"><span><?php /* @escapeNotVerified */ echo __('Signature') ?></span></label>
+            <div class="control">
+                <input type="text" name="signature" id="signatureno" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Signature') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-12" style="float:left;width: 33.33%;border-radius: 6px;scolor: #000;font-size: 18px;line-height: 30px;display: inline-block;max-width: 100%;margin-bottom: 5px;font-weight: 500;">
+			<div class="field datetwo">
+            <label for="datetwo" class="label"><span><?php /* @escapeNotVerified */ echo __('Date') ?></span></label>
+            <div class="control">
+                <input type="date" name="datetwo" id="datetwo" style="height: 40px;width: 100%;border-radius:6px;box-shadow: 1px 1px 3px 1px #179BD7;" value="<?php echo $block->escapeHtml($block->getFormData()->getFax()) ?>" title="<?php /* @escapeNotVerified */ echo __('Date') ?>" class="input-text" data-validate="">
+            </div>
+            </div>
+			</div>---->
+			
+			</div>
+		</fieldset>
+
+    <?php endif; ?>
+   <!--- <fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Sign-in Information') ?></span></legend><br>
+ <div class="field password required" data-mage-init='{"passwordStrengthIndicator": {}}'>
+            <label for="password" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?php /* @escapeNotVerified */ echo __('Password') ?>"
+                       class="input-text"
+                       data-password-min-length="<?php echo $block->escapeHtml($block->getMinimumPasswordLength()) ?>"
+                       data-password-min-character-sets="<?php echo $block->escapeHtml($block->getRequiredCharacterClassesNumber()) ?>"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+                <div id="password-strength-meter-container" data-role="password-strength-meter" >
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?php /* @escapeNotVerified */ echo __('Password Strength'); ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label" >
+                            <?php /* @escapeNotVerified */ echo __('No Password'); ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="field confirmation required">
+            <label for="password-confirmation" class="label"><span><?php /* @escapeNotVerified */ echo __('Confirm Password') ?></span></label>
+            <div class="control">
+                <input type="password" name="password_confirmation" title="<?php /* @escapeNotVerified */ echo __('Confirm Password') ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+            </div>
+        </div>
+        <?php echo $block->getChildHtml('form_additional_info'); ?>
+    </fieldset>--->
+    <div class="actions-toolbar">
+        <div class="primary" style="margin: 5px;margin-left: 500px;">
+            <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Apply') ?>"><span><?php /* @escapeNotVerified */ echo __('Apply') ?></span></button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php /* @escapeNotVerified */ echo __('Back') ?></span></a>
+        </div>
+    </div>
+	</div>
+</form>
+<script>
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+$(".rented").change(function()
+                                  {
+                                      $(".rented").prop('checked',false);
+                                      $(this).prop('checked',true);
+									  var id = this.id;
+
+if(this.id == 'rented')
+{
+$(this).val(1);
+$('#owned').val(0);
+}
+else{
+$(this).val(1);
+$('#rented').val(0);
+}
+});
+/* new code*/
+$(".corporation").change(function()
+                                  {
+                                      $(".corporation").prop('checked',false);
+                                      $(this).prop('checked',true);
+									  var id = this.id;
+
+if(this.id == 'corporation')
+{
+$(this).val(1);
+$('#proprietorship').val(0);
+}
+else{
+$(this).val(1);
+$('#corporation').val(0);
+}
+});
+
+/*end code*/
+
+/* start code*/
+$(".yes").change(function()
+                                  {
+                                      $(".yes").prop('checked',false);
+                                      $(this).prop('checked',true);
+									  var id = this.id;
+
+if(this.id == 'yes')
+{
+$(this).val(1);
+$('#no').val(0);
+}
+else{
+$(this).val(1);
+$('#yes').val(0);
+}
+});
+
+/* end code*/
+
+/* start code*/
+$(".visa").change(function()
+                                  {
+                                      $(".visa").prop('checked',false);
+                                      $(this).prop('checked',true);
+									  var id = this.id;
+
+if(this.id == 'visa')
+{
+$(this).val(1);
+$('#mastercard').val(0);
+}
+else{
+$(this).val(1);
+$('#visa').val(0);
+}
+});
+/* end code*/
+
+$('#openterms').change(function(){
+
+if($(this).attr('checked')){
+      $(this).val(1);
+ }else{
+      $(this).val(0);
+ }
+});
+
+$('#mega').change(function(){
+
+if($(this).attr('checked')){
+      $(this).val(1);
+ }else{
+      $(this).val(0);
+ }
+});
+
+$('#cantrex').change(function(){
+
+if($(this).attr('checked')){
+      $(this).val(1);
+ }else{
+      $(this).val(0);
+ }
+});
+/*select visa or mastercard
+$(".credit").change(function()
+{
+	$(".credit").prop('checked',false);
+	$(this).prop('checked',true);
+	var val = $(this).val();
+	console.log(val);
+	if(val == '1')
+	{
+		$('#form_credit').show();
+		$('#form_cash').hide();
+		$('#form_nba').hide();
+		$('#form_cantrex').hide();
+	}
+	else if(val == '0'){
+		$('#form_credit').hide();
+		$('#form_cash').show();
+		$('#form_nba').hide();
+		$('#form_cantrex').hide();
+	}
+	else if(val == '0'){
+		$('#form_credit').hide();
+		$('#form_cash').hide();
+		$('#form_nba').show();
+		$('#form_cantrex').hide();
+	}
+	else if(val == '0'){
+		$('#form_credit').hide();
+		$('#form_cash').hide();
+		$('#form_nba').hide();
+		$('#form_cantrex').show();
+	}
+});*/
+/* end code*/
+/*   start  credit bankinfo mega cantrex  form_credit form_cash form_nba  form_cantrex*/
+  /*$("#credit, #bankinfo, #mega, #cantrex").click(function () {
+            var check1 = $("#credit").is(":checked");
+            var check2 = $("#bankinfo").is(":checked");
+			var check3 = $("#mega").is(":checked");
+			var check4 = $("#cantrex").is(":checked");
+
+            $("#form_credit").hide();
+            $("#form_cash").hide();
+            $("#form_nba").hide();
+			$("#form_cantrex").hide();
+
+            if (check1) {
+                $("#form_credit").show();
+				$("#credit").prop('checked',false);
+            } else if (check2) {
+                $("#form_cash").show();
+					$("#bankinfo").prop('checked',false);
+            } else if (check3) {
+                $("#form_nba").show();
+					$("#mega").prop('checked',false);
+            }else if (check4) {
+                $("#form_cantrex").show();
+					$("#cantrex").prop('checked',false);
+            }
+
+        });*/
+
+
+/*end */
+$("input[name='credit']").click(function () {
+    $('#form_credit').css('display', ($(this).val() === 'Checkbox1') ? 'block':'none');
+	$('#form_cash').css('display', ($(this).val() === 'Checkbox2') ? 'block':'none');
+	$('#form_nba').css('display', ($(this).val() === 'Checkbox3') ? 'block':'none');
+	$('#form_cantrex').css('display', ($(this).val() === 'Checkbox4') ? 'block':'none');
+});
+
+document.getElementById('myselect').addEventListener('change', function () {
+    var style = this.value == 1 ? 'block' : 'none';
+    document.getElementById('form_credit_id').style.display = style;
+	var style = this.value == 2 ? 'block' : 'none';
+	document.getElementById('form_cash_id').style.display = style;
+	var style = this.value == 3 ? 'block' : 'none';
+	document.getElementById('form_nba_id').style.display = style;
+	var style = this.value == 4 ? 'block' : 'none';
+	document.getElementById('form_cantrex_id').style.display = style;
+});
+
+    var dataForm = $('#form-validate');
+    var ignore = <?php /* @escapeNotVerified */ echo $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null'; ?>;
+    
+    dataForm.mage('validation', {
+    <?php if ($_dob->isEnabled()): ?>
+        errorPlacement: function(error, element) {
+            if (element.prop('id').search('full') !== -1) {
+                var dobElement = $(element).parents('.customer-dob'),
+                    errorClass = error.prop('class');
+                error.insertAfter(element.parent());
+                dobElement.find('.validate-custom').addClass(errorClass)
+                    .after('<div class="' + errorClass + '"></div>');
+            }
+            else {
+                error.insertAfter(element);
+            }
+        },
+        ignore: ':hidden:not(' + ignore + ')'
+    <?php else: ?>
+        ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+    <?php endif ?>
+    }).find('input:text').attr('autocomplete', 'off');
+
+});
+</script>
+<?php if ($helper->getShowAddress()): ?>
+<script type="text/x-magento-init">
+    {
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?php /* @escapeNotVerified */ echo($block->getConfig('general/region/display_all') ? 'true' : 'false'); ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#zip",
+                "form": "#form-validate",
+                "regionJson": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Directory\Helper\Data')->getRegionJson() ?>,
+                "defaultRegion": "<?php /* @escapeNotVerified */ echo $block->getFormData()->getRegionId() ?>",
+                "countriesWithOptionalZip": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Directory\Helper\Data')->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+        function ShowHideDiv(yes_no) {
+            var epra = document.getElementById("epra");
+            epra.style.display = yes_no.checked ? "block" : "none";
+        }
+</script>
+
+		<script type="text/javascript">
+			function selectAll(){
+				var items=document.getElementsByName('acs');
+				for(var i=0; i<items.length; i++){
+					if(items[i].type=='checkbox')
+						items[i].checked=true;
+				}
+			}
+			
+			function UnSelectAll(){
+				var items=document.getElementsByName('acs');
+				for(var i=0; i<items.length; i++){
+					if(items[i].type=='checkbox')
+						items[i].checked=false;
+				}
+			}			
+		</script>
+<script>
+     require([
+          "jquery",
+          "mage/calendar"
+     ], function($){
+         $("#lease_expiry").calendar({
+              buttonText:"<?php echo __('Select Date') ?>",
+         });
+       });
+</script>
+<?php endif; ?>
