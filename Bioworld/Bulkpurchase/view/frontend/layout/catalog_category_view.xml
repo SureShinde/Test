@@ -9,6 +9,22 @@
     
     <body>
               
-     
+        <!-- <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\ListProduct" name="custom.block" template="Bioworld_Bulkpurchase::product/list.phtml" />
+        </referenceContainer> -->
+
+        <!-- <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="custom.block" template="Bioworld_Bulkpurchase::product/list.phtml" before="-" />
+
+        </referenceContainer> -->
+
+        <!-- <block class="Bioworld\Bulkpurchase\Block\Rewrite\Product\ListProduct" name="name" template="Bioworld_Bulkpurchase::product/list.phtml"/> -->
+
+        <!-- <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\ListProduct" name="custom.block" template="Bioworld_Bulkpurchase::product/list.phtml" />
+        </referenceContainer>
+        
+ -->
+   
     </body>
 </page>
